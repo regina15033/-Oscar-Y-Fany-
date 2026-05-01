@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Configuración para la miniatura al compartir (Open Graph) -->
+    <title>Boda - Estefanía & Oscar Uriel</title>
+    <meta name="description" content="Acompáñanos a celebrar nuestra unión el 04 de Julio de 2026.">
+    <meta property="og:title" content="Invitación de Boda - Estefanía & Oscar Uriel">
+    <meta property="og:description" content="Te esperamos para celebrar juntos este día tan especial.">
+    <meta property="og:image" content="https://raw.githubusercontent.com/regina15033/Nuestra-Boda-Oscar-Y-Fany-/main/WhatsApp%20Image%202026-05-01%20at%205.21.34%20PM%20(1).jpeg">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://raw.githubusercontent.com/regina15033/Nuestra-Boda-Oscar-Y-Fany-/main/WhatsApp%20Image%202026-05-01%20at%205.21.34%20PM%20(1).jpeg">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Great+Vibes&family=Montserrat:wght@200;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy-blue: #0a2342;
+            --soft-white: #fafafa;
+            --gold-subtle: #c5a059;
+            --ivory: #ffffff;
+        }
+
+        body {
+            background-color: var(--soft-white);
+            color: var(--navy-blue);
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        .font-serif-elegant { font-family: 'Cinzel', serif; }
+        .font-script { font-family: 'Great Vibes', cursive; }
+
+        /* Estilo de Papel Rasgado */
+        .torn-edge {
+            position: relative;
+            background: var(--ivory);
+            padding-bottom: 50px;
+        }
+
+        .torn-edge::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40px;
+            background-color: var(--soft-white);
+            clip-path: polygon(0% 0%, 5% 40%, 10% 0%, 15% 50%, 20% 0%, 25% 30%, 30% 0%, 35% 60%, 40% 0%, 45% 40%, 50% 0%, 55% 50%, 60% 0%, 65% 30%, 70% 0%, 75% 60%, 80% 0%, 85% 40%, 90% 0%, 95% 50%, 100% 0%, 100% 100%, 0% 100%);
+            z-index: 20;
+        }
+
+        /* Diseño de Portada Invertido */
+        .split-hero {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            width: 100%;
+        }
+
+        @media (min-width: 768px) {
+            .split-hero { flex-direction: row-reverse; } 
+        }
+
+        .hero-left {
+            flex: 1;
+            background-color: var(--navy-blue);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .hero-right {
+            flex: 1;
+            background-color: var(--ivory);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 3rem;
+            text-align: center;
+            position: relative;
+            z-index: 5;
+        }
+
+        .hero-image-frame {
+            width: 85%;
+            height: 85%;
+            object-fit: cover;
+            border: 15px solid white;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+        }
+
+        .flower-decoration {
+            position: absolute;
+            width: 180px;
+            z-index: 5;
+            opacity: 0.8;
+            pointer-events: none;
+        }
+
+        .flower-top-right { top: 20px; right: 20px; }
+        .flower-bottom-left { bottom: 60px; left: 20px; transform: scaleX(-1); }
+
+        .calendar-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            margin: 3rem 0;
+            border-top: 1px solid var(--gold-subtle);
+            border-bottom: 1px solid var(--gold-subtle);
+            padding: 2rem 0;
+        }
+
+        .calendar-icon {
+            font-size: 3rem;
+            color: var(--gold-subtle);
+        }
+
+        .date-display {
+            text-align: left;
+            border-left: 2px solid var(--gold-subtle);
+            padding-left: 2rem;
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 1s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .music-control {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 100;
+            background: white;
+            border: 1px solid var(--gold-subtle);
+            color: var(--gold-subtle);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            cursor: pointer;
+        }
+
+        .music-control:hover {
+            background-color: var(--soft-white);
+        }
+    </style>
+</head>
+<body>
+
+    <button id="music-btn" class="music-control" onclick="toggleMusic()" aria-label="Reproducir música">
+        <svg id="music-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path id="path-play" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+            <path id="path-pause" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 9v6m4-6v6" />
+        </svg>
+    </button>
+
+    <audio id="bg-music" loop>
+        <source src="https://raw.githubusercontent.com/regina15033/BTS-BUTERFLY/main/BTS%20%EB%B0%A9%ED%83%84%EC%86%8C%EB%85%84%EB%8B%A8%20-%20Butterfly%20Piano%20Cover.mp3" type="audio/mpeg">
+    </audio>
+
+    <header class="split-hero">
+        <div class="hero-right torn-edge">
+            <img src="https://cdn-icons-png.flaticon.com/512/3211/3211115.png" class="flower-decoration flower-top-right" style="filter: sepia(1) hue-rotate(330deg) brightness(0.9);" alt="decoración floral">
+            
+            <div class="fade-in visible px-4">
+                <p class="font-serif-elegant tracking-[0.4em] text-[11px] uppercase mb-8 text-slate-500 italic">Nos encantaría celebrar este día tan especial junto a ti</p>
+                
+                <h1 class="font-script text-7xl md:text-8xl text-navy-blue mb-4">Estefanía</h1>
+                <p class="font-serif-elegant text-xl my-2 text-gold-subtle">&</p>
+                <h1 class="font-script text-7xl md:text-8xl text-navy-blue mb-8">Oscar Uriel</h1>
+                
+                <div class="w-16 h-px bg-slate-200 mx-auto my-6"></div>
+                
+                <p class="font-serif-elegant text-xs tracking-[0.3em] uppercase text-slate-400">Te esperamos para celebrar</p>
+                <p class="font-script text-4xl text-gold-subtle mt-2">Juntos</p>
+            </div>
+
+            <img src="https://cdn-icons-png.flaticon.com/512/3211/3211115.png" class="flower-decoration flower-bottom-left" style="filter: sepia(1) hue-rotate(330deg) brightness(0.9);" alt="decoración floral">
+        </div>
+
+        <div class="hero-left">
+            <img src="https://raw.githubusercontent.com/regina15033/Nuestra-Boda-Oscar-Y-Fany-/main/WhatsApp%20Image%202026-05-01%20at%205.21.34%20PM%20(1).jpeg" 
+                 alt="Foto de la pareja" class="hero-image-frame">
+        </div>
+    </header>
+
+    <section class="py-32 px-6 bg-[#fafafa] text-center relative z-30">
+        <div class="max-w-4xl mx-auto fade-in">
+            <h2 class="font-serif-elegant text-xl tracking-[0.5em] mb-12 text-navy-blue uppercase">Reserva la fecha</h2>
+            
+            <div class="calendar-container">
+                <div class="calendar-icon">
+                    <svg class="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M12 14l2 2m0 0l2-2m-2 2V12" />
+                    </svg>
+                </div>
+                <div class="date-display">
+                    <p class="font-serif-elegant text-gold-subtle text-2xl tracking-[0.2em] mb-1">SÁBADO</p>
+                    <p class="font-serif-elegant text-6xl text-navy-blue leading-none mb-1">04</p>
+                    <p class="font-serif-elegant text-2xl tracking-[0.2em]">JULIO / 2026</p>
+                </div>
+            </div>
+
+            <p class="font-serif-elegant text-sm tracking-[0.3em] opacity-60">FALTAN</p>
+            <div id="countdown" class="flex justify-center gap-10 mt-8">
+                <div><span id="days" class="text-4xl font-serif-elegant text-navy-blue">00</span><p class="text-[9px] uppercase tracking-widest mt-2">Días</p></div>
+                <div><span id="hours" class="text-4xl font-serif-elegant text-navy-blue">00</span><p class="text-[9px] uppercase tracking-widest mt-2">Horas</p></div>
+                <div><span id="minutes" class="text-4xl font-serif-elegant text-navy-blue">00</span><p class="text-[9px] uppercase tracking-widest mt-2">Mins</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 px-6 bg-white torn-edge" style="transform: rotate(180deg); margin-top: -40px;">
+        <div style="transform: rotate(-180deg);">
+            <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-16 text-center fade-in">
+                <div>
+                    <h3 class="font-serif-elegant text-[10px] tracking-[0.3em] text-gold-subtle mb-8 uppercase">Padres de la Novia</h3>
+                    <p class="font-serif-elegant text-xl">Verónica Ruíz Ruíz</p>
+                    <p class="font-serif-elegant text-xl">Isidoro Rodríguez Pichardo</p>
+                </div>
+                <div>
+                    <h3 class="font-serif-elegant text-[10px] tracking-[0.3em] text-gold-subtle mb-8 uppercase">Padres del Novio</h3>
+                    <p class="font-serif-elegant text-xl">Oscar Gómez Barrón</p>
+                    <p class="font-serif-elegant text-xl">Ma. Lourdes Irma Rios Olvera</p>
+                </div>
+            </div>
+            <div class="mt-20 text-center fade-in">
+                <h3 class="font-serif-elegant text-[10px] tracking-[0.3em] text-gold-subtle mb-8 uppercase">Nuestros Padrinos</h3>
+                <p class="font-serif-elegant text-xl">José Bravo Alegría & Georgina Rios Olvera</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-32 px-6 text-center">
+        <div class="max-w-5xl mx-auto fade-in">
+            <h2 class="font-serif-elegant text-3xl mb-20 tracking-[0.3em]">Celebración</h2>
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="p-12 border border-slate-100 shadow-sm hover:shadow-md transition-shadow bg-white">
+                    <h3 class="font-serif-elegant text-xl mb-6 text-gold-subtle">Ceremonia Religiosa</h3>
+                    <p class="font-bold text-sm mb-4">18:00 H</p>
+                    <p class="text-sm text-slate-500 mb-10 leading-relaxed italic">Parroquia de San Juan Bautista<br>Centro Histórico</p>
+                    <button onclick="window.open('https://maps.google.com')" class="border border-gold-subtle text-gold-subtle px-10 py-3 text-[10px] tracking-[0.3em] hover:bg-gold-subtle hover:text-white transition-all uppercase">Ver ubicación</button>
+                </div>
+                <div class="p-12 border border-slate-100 shadow-sm hover:shadow-md transition-shadow bg-white">
+                    <h3 class="font-serif-elegant text-xl mb-6 text-gold-subtle">Recepción</h3>
+                    <p class="font-bold text-sm mb-4">20:30 H</p>
+                    <p class="text-sm text-slate-500 mb-10 leading-relaxed italic">Hacienda Quinta Real<br>Dirección del Evento</p>
+                    <button onclick="window.open('https://maps.google.com')" class="border border-gold-subtle text-gold-subtle px-10 py-3 text-[10px] tracking-[0.3em] hover:bg-gold-subtle hover:text-white transition-all uppercase">Ver ubicación</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-40 text-center bg-navy-blue text-white">
+        <div class="fade-in">
+            <h2 class="font-script text-7xl mb-6">Estefanía & Oscar Uriel</h2>
+            <p class="font-serif-elegant text-[10px] tracking-[0.6em] opacity-40">04 . JULIO . 2026</p>
+        </div>
+    </footer>
+
+    <script>
+        const audio = document.getElementById('bg-music');
+        const pathPlay = document.getElementById('path-play');
+        const pathPause = document.getElementById('path-pause');
+        let isPlaying = false;
+
+        function toggleMusic() {
+            if (isPlaying) {
+                audio.pause();
+                pathPlay.classList.remove('hidden');
+                pathPause.classList.add('hidden');
+            } else {
+                audio.play().catch(e => console.log("Interacción requerida."));
+                pathPlay.classList.add('hidden');
+                pathPause.classList.remove('hidden');
+            }
+            isPlaying = !isPlaying;
+        }
+
+        function handleScroll() {
+            const elements = document.querySelectorAll('.fade-in');
+            elements.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight * 0.9) el.classList.add('visible');
+            });
+        }
+
+        const targetDate = new Date("Jul 4, 2026 18:00:00").getTime();
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const gap = targetDate - now;
+            const d = Math.floor(gap / (1000 * 60 * 60 * 24));
+            const h = Math.floor((gap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((gap % (1000 * 60 * 60)) / (1000 * 60));
+            document.getElementById('days').innerText = d < 10 ? '0'+d : d;
+            document.getElementById('hours').innerText = h < 10 ? '0'+h : h;
+            document.getElementById('minutes').innerText = m < 10 ? '0'+m : m;
+        }
+
+        setInterval(updateCountdown, 1000);
+        window.addEventListener('scroll', handleScroll);
+        window.onload = () => { handleScroll(); updateCountdown(); };
+    </script>
+</body>
+</html>

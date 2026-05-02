@@ -154,11 +154,10 @@
             box-shadow: 0 30px 60px rgba(0,0,0,0.3);
         }
 
-        /* SEGUNDA IMAGEN: Aumentada un 5% extra sobre el tamaño anterior */
         .image-short-frame {
             width: 100%;
-            max-width: 578px; /* Aumentado de 550px (+5%) */
-            height: 417px;    /* Aumentado de 397px (+5%) */
+            max-width: 578px; 
+            height: 417px;    
             object-fit: cover;
             border: 10px solid white;
             box-shadow: 0 15px 35px rgba(0,0,0,0.1);
@@ -236,20 +235,35 @@
             margin-top: 4px;
         }
 
-        /* Separador de Corazón */
+        /* Separador de Corazón - COLOR AZUL */
         .heart-divider {
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 14px;
-            margin: 28px 0;
+            margin: 40px 0;
+            width: 100%;
+        }
+
+        .heart-divider .line {
+            height: 1.5px;
+            background-color: var(--navy-blue);
             opacity: 0.4;
+            flex-grow: 1;
+            max-width: 80px;
+        }
+
+        .heart-divider svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--navy-blue);
+            opacity: 0.9;
         }
 
         /* Espaciado de secciones */
         section {
-            padding-top: 5.7rem !important;
-            padding-bottom: 5.7rem !important;
+            padding-top: 5rem !important;
+            padding-bottom: 5rem !important;
         }
         
         .push-down-photo {
@@ -340,7 +354,7 @@
         </div>
     </section>
 
-    <!-- FOTO NOVIO (Aumentada un 5% adicional) -->
+    <!-- FOTO NOVIO 1 -->
     <section class="push-down-photo px-6 bg-soft-white text-center">
         <div class="max-w-5xl mx-auto">
             <img src="https://raw.githubusercontent.com/regina15033/Nuestra-Boda-Oscar-Y-Fany-/main/WhatsApp%20Image%202026-05-01%20at%205.21.33%20PM.jpeg" 
@@ -360,9 +374,9 @@
         </div>
     </section>
 
-    <!-- CUENTA REGRESIVA - Una sola línea -->
-    <section class="py-11 px-6 bg-white text-center flex justify-center">
-        <div class="reveal countdown-bg">
+    <!-- CUENTA REGRESIVA -->
+    <section class="py-11 px-6 bg-white text-center flex flex-col items-center">
+        <div class="reveal countdown-bg mb-12">
             <h3 class="font-serif-elegant text-[10px] tracking-[0.4em] text-navy-blue mb-5 uppercase opacity-60">Comienza la cuenta atrás</h3>
             <div id="countdown" class="font-serif-elegant text-navy-blue">
                 <div class="countdown-item">
@@ -386,26 +400,35 @@
                 </div>
             </div>
         </div>
+
+        <!-- FOTO DESPUÉS DE LA CUENTA REGRESIVA -->
+        <div class="max-w-5xl mx-auto reveal">
+            <img src="https://raw.githubusercontent.com/regina15033/Nuestra-Boda-Oscar-Y-Fany-/main/WhatsApp%20Image%202026-05-01%20at%205.21.34%20PM.jpeg" 
+                 alt="Foto Novios Boda" class="image-short-frame photo-static">
+        </div>
     </section>
 
     <!-- UBICACIONES -->
     <section class="py-9 px-6 bg-white">
         <div class="max-w-5xl mx-auto">
             <div class="flex flex-col items-center">
-                <div class="flex flex-col items-center text-center reveal mb-9">
+                <!-- MISA -->
+                <div class="flex flex-col items-center text-center reveal mb-6">
                     <h3 class="font-script text-5xl mb-4 text-navy-blue">Misa</h3>
                     <p class="font-serif-elegant text-xs text-gold-subtle mb-4 tracking-widest uppercase">14:00 Horas</p>
                     <p class="font-serif-elegant text-sm text-slate-500 mb-8 px-4">Parroquia de Nuestra Señora de Guadalupe</p>
                     <button onclick="window.open('https://maps.app.goo.gl/3')" class="btn-navy">Ver Ubicación</button>
                 </div>
 
+                <!-- SEPARADOR CORAZÓN AZUL MARINO -->
                 <div class="heart-divider reveal">
                     <div class="line"></div>
                     <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
                     <div class="line"></div>
                 </div>
 
-                <div class="flex flex-col items-center text-center reveal mt-9">
+                <!-- RECEPCIÓN -->
+                <div class="flex flex-col items-center text-center reveal mt-6">
                     <h3 class="font-script text-5xl mb-4 text-navy-blue">Recepción</h3>
                     <p class="font-serif-elegant text-xs text-gold-subtle mb-4 tracking-widest uppercase">15:00 Horas</p>
                     <p class="font-serif-elegant text-sm text-slate-500 mb-8 px-4">Salón De Eventos "Los Arcos"</p>

@@ -33,10 +33,11 @@
         .font-serif-elegant { font-family: 'Cinzel', serif; }
         .font-script { font-family: 'Great Vibes', cursive; }
 
+        /* Sistema de Animaciones */
         .reveal {
             opacity: 0;
-            transform: translateY(20px);
-            transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
+            transform: translateY(30px);
+            transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1);
         }
 
         .reveal.active {
@@ -44,9 +45,14 @@
             transform: translateY(0);
         }
 
+        .delay-1 { transition-delay: 0.2s; } 
+        .delay-2 { transition-delay: 0.8s; } 
+        .delay-3 { transition-delay: 1.4s; } 
+        .delay-4 { transition-delay: 2.0s; } 
+
         .photo-static {
             opacity: 0;
-            transition: opacity 1.5s ease-out;
+            transition: opacity 2s ease-out;
         }
         .photo-static.active {
             opacity: 1;
@@ -61,7 +67,6 @@
         @keyframes fall {
             0% { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
             10% { opacity: 0.6; }
-            90% { opacity: 0.6; }
             100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
         }
 
@@ -75,63 +80,86 @@
             z-index: 50;
         }
 
+        /* Reproductor Estilo Azul Transparente */
         .player-container {
             margin-top: 30px;
             width: 100%;
-            max-width: 260px;
+            max-width: 320px;
+            padding: 20px 0;
+            background: transparent; /* Sin fondo como se solicitó */
         }
         
         .player-label {
-            font-size: 10px;
+            font-size: 14px;
             letter-spacing: 2px;
-            text-transform: uppercase;
             color: var(--navy-blue);
-            margin-bottom: 12px;
-            opacity: 0.7;
+            margin-bottom: 20px;
         }
 
         .progress-bar {
             width: 100%;
-            height: 2px;
-            background: #e2e8f0;
-            margin-bottom: 15px;
+            height: 3px;
+            background: rgba(10, 35, 66, 0.1);
+            margin-bottom: 20px;
             cursor: pointer;
+            border-radius: 2px;
+            position: relative;
         }
 
         .progress-current {
             width: 0%;
             height: 100%;
             background: var(--navy-blue);
+            border-radius: 2px;
+            position: relative;
         }
 
-        .play-main {
-            width: 44px;
-            height: 44px;
-            border: 1px solid var(--navy-blue);
+        .progress-current::after {
+            content: '';
+            position: absolute;
+            right: -6px;
+            top: -4.5px;
+            width: 12px;
+            height: 12px;
+            background: var(--navy-blue);
+            border-radius: 50%;
+        }
+
+        .player-controls {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: var(--navy-blue);
+        }
+
+        .play-main-circle {
+            width: 54px;
+            height: 54px;
+            border: 1.5px solid var(--navy-blue);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            cursor: pointer;
             transition: all 0.3s ease;
         }
-        
-        .play-main:hover {
-            background: var(--navy-blue);
-            color: white;
-        }
+        .play-main-circle:active { transform: scale(0.9); }
 
+        /* Imágenes */
         .hero-image-frame {
             width: 100%;
-            max-width: 440px; /* Más larga */
-            height: 600px;
+            max-width: 460px; 
+            height: 680px;
             object-fit: cover;
             border: 12px solid white;
             box-shadow: 0 30px 60px rgba(0,0,0,0.3);
         }
 
-        .image-divider-frame {
+        .image-short-frame {
             width: 100%;
             max-width: 600px;
+            height: 450px;
+            object-fit: cover;
             border: 12px solid white;
             box-shadow: 0 15px 35px rgba(0,0,0,0.1);
             margin: 0 auto;
@@ -141,37 +169,53 @@
             background: transparent;
             border: 1px solid var(--gold-subtle);
             color: var(--gold-subtle);
-            padding: 10px 25px;
+            padding: 12px 30px;
             font-size: 10px;
             letter-spacing: 3px;
             text-transform: uppercase;
             transition: all 0.4s ease;
         }
 
+        /* Calendario Completo */
         .mini-calendar { 
             display: grid; 
             grid-template-columns: repeat(7, 1fr); 
-            gap: 8px; 
-            max-width: 300px; 
+            gap: 5px; 
+            max-width: 320px; 
             margin: 20px auto; 
         }
         .calendar-day { 
-            padding: 5px; 
-            font-size: 0.8rem; 
+            height: 35px;
+            font-size: 0.85rem; 
             display: flex; 
             align-items: center; 
             justify-content: center; 
             position: relative; 
         }
-        .heart-date::after { 
-            content: "❤"; 
-            position: absolute; 
-            top: 50%; 
-            left: 50%; 
-            transform: translate(-50%, -50%); 
-            color: white; 
-            font-size: 2.2rem; 
-            z-index: -1; 
+
+        /* Día 4 Especial: Corazón Blanco, Número Azul */
+        .selected-date {
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .selected-date svg {
+            position: absolute;
+            width: 34px;
+            height: 34px;
+            fill: white;
+            z-index: 1;
+        }
+
+        .selected-date span {
+            position: relative;
+            z-index: 2;
+            color: var(--navy-blue);
+            font-weight: bold;
         }
 
         #countdown {
@@ -181,15 +225,11 @@
             align-items: baseline;
             gap: 15px;
         }
-        .countdown-item span {
-            font-size: 2.2rem;
-            line-height: 1;
-        }
     </style>
 </head>
 <body>
 
-    <audio id="bg-music">
+    <audio id="bg-music" loop>
         <source src="https://raw.githubusercontent.com/regina15033/Nuestra-Boda-Oscar-Y-Fany-/main/%F0%9F%8C%B9%20Virl%C3%A1n%20Garc%C3%ADa%20-%20MMXX%C2%B4s%20(LetraLyrics)%20%F0%9F%8C%B9%F0%9F%98%8D.mp3" type="audio/mpeg">
     </audio>
 
@@ -198,33 +238,50 @@
     <!-- PÁGINA 1: PORTADA -->
     <header id="hero-section" class="flex flex-col md:flex-row min-h-screen">
         <div class="flex-1 bg-white flex flex-col justify-center items-center text-center p-8 relative overflow-hidden">
-            <div class="reveal active">
-                <p class="font-script text-xl md:text-2xl text-gold-subtle mb-6 opacity-80">Nos encantaría celebrar este día tan especial junto a ti.</p>
-                
+            
+            <div class="reveal delay-1">
                 <h1 class="font-script text-7xl md:text-8xl text-navy-blue mb-4">Oscar</h1>
                 <p class="font-serif-elegant text-xl my-2 text-gold-subtle italic">&</p>
                 <h1 class="font-script text-7xl md:text-8xl text-navy-blue mb-8">Fany</h1>
-                
-                <div class="mb-2">
-                    <p class="font-serif-elegant tracking-[0.3em] text-[11px] text-slate-500 uppercase">Te esperamos para celebrar</p>
-                    <p class="font-script text-4xl text-gold-subtle mt-2">Juntos</p>
-                </div>
+            </div>
 
-                <!-- REPRODUCTOR RESTAURADO -->
+            <div class="reveal delay-2">
+                <!-- Frase restaurada -->
+                <p class="font-script text-xl md:text-2xl text-gold-subtle mb-10 opacity-80 px-4 max-w-md">
+                    Nos encantaría celebrar este día tan especial junto a ti.
+                </p>
+            </div>
+            
+            <div class="reveal delay-3">
                 <div class="player-container mx-auto">
-                    <p class="player-label font-serif-elegant">Escucha nuestra canción</p>
-                    <div class="progress-bar" id="progress-container">
+                    <div class="flex justify-between items-center mb-4">
+                        <p class="player-label font-serif-elegant m-0">Escucha nuestra canción</p>
+                        <div class="flex gap-4 text-navy-blue/60">
+                            <svg class="w-4 h-4 cursor-pointer" fill="currentColor" viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+                            <svg class="w-4 h-4 cursor-pointer" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                        </div>
+                    </div>
+
+                    <div class="progress-bar" id="progress-container" onclick="seek(event)">
                         <div class="progress-current" id="music-progress"></div>
                     </div>
-                    <div class="player-controls flex items-center justify-center gap-5">
-                        <svg class="w-4 h-4 cursor-pointer opacity-40 hover:opacity-100" fill="currentColor" viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
+
+                    <div class="player-controls">
+                        <!-- Pista Anterior -->
+                        <svg class="w-5 h-5 cursor-pointer opacity-70 hover:opacity-100" fill="currentColor" viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
+                        <!-- Retroceder -->
+                        <svg class="w-5 h-5 cursor-pointer opacity-70 hover:opacity-100" fill="currentColor" viewBox="0 0 24 24"><path d="M11 18V6l-8.5 6 8.5 6zm.5-6l8.5 6V6l-8.5 6z"/></svg>
                         
-                        <div class="control-btn play-main cursor-pointer" onclick="toggleMusic()">
-                            <svg id="play-icon" class="w-5 h-5 ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                            <svg id="pause-icon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                        <!-- Play/Pause -->
+                        <div class="play-main-circle" onclick="toggleMusic()">
+                            <svg id="play-icon" class="w-7 h-7 ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                            <svg id="pause-icon" class="w-7 h-7 hidden" fill="currentColor" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
                         </div>
 
-                        <svg class="w-4 h-4 cursor-pointer opacity-40 hover:opacity-100" fill="currentColor" viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
+                        <!-- Avanzar -->
+                        <svg class="w-5 h-5 cursor-pointer opacity-70 hover:opacity-100" fill="currentColor" viewBox="0 0 24 24"><path d="M4 18l8.5-6L4 6v12zm9-12v12l8.5-6L13 6z"/></svg>
+                        <!-- Siguiente Pista -->
+                        <svg class="w-5 h-5 cursor-pointer opacity-70 hover:opacity-100" fill="currentColor" viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
                     </div>
                 </div>
             </div>
@@ -233,10 +290,10 @@
         <div class="flex-1 bg-navy-premium flex flex-col justify-center items-center p-10 relative overflow-hidden">
             <div class="flex flex-col items-center">
                 <img src="https://raw.githubusercontent.com/regina15033/Nuestra-Boda-Oscar-Y-Fany-/main/WhatsApp%20Image%202026-05-01%20at%205.21.34%20PM%20(1).jpeg" 
-                     alt="Oscar y Fany" class="hero-image-frame photo-static active">
-                <div class="mt-8 text-center reveal active">
+                     alt="Oscar y Fany" class="hero-image-frame photo-static reveal delay-4">
+                
+                <div class="mt-8 text-center reveal delay-4">
                     <p class="font-serif-elegant tracking-[0.4em] text-white/80 text-sm">04 | 07 | 26</p>
-                    <p class="font-script text-xl text-gold-bright mt-4 italic">Unidos por el amor</p>
                 </div>
             </div>
         </div>
@@ -255,9 +312,19 @@
 
                 <div class="mini-calendar font-serif-elegant">
                     <div class="calendar-header-day opacity-40 text-[9px]">D</div><div class="calendar-header-day opacity-40 text-[9px]">L</div><div class="calendar-header-day opacity-40 text-[9px]">M</div><div class="calendar-header-day opacity-40 text-[9px]">M</div><div class="calendar-header-day opacity-40 text-[9px]">J</div><div class="calendar-header-day opacity-40 text-[9px]">V</div><div class="calendar-header-day opacity-40 text-[9px]">S</div>
+                    
                     <div class="calendar-day opacity-0"></div><div class="calendar-day opacity-0"></div><div class="calendar-day opacity-0"></div>
-                    <div class="calendar-day">1</div><div class="calendar-day">2</div><div class="calendar-day">3</div><div class="calendar-day heart-date">4</div>
+                    <div class="calendar-day">1</div><div class="calendar-day">2</div><div class="calendar-day">3</div>
+                    <div class="calendar-day">
+                        <div class="selected-date">
+                            <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                            <span>4</span>
+                        </div>
+                    </div>
                     <div class="calendar-day">5</div><div class="calendar-day">6</div><div class="calendar-day">7</div><div class="calendar-day">8</div><div class="calendar-day">9</div><div class="calendar-day">10</div><div class="calendar-day">11</div>
+                    <div class="calendar-day">12</div><div class="calendar-day">13</div><div class="calendar-day">14</div><div class="calendar-day">15</div><div class="calendar-day">16</div><div class="calendar-day">17</div><div class="calendar-day">18</div>
+                    <div class="calendar-day">19</div><div class="calendar-day">20</div><div class="calendar-day">21</div><div class="calendar-day">22</div><div class="calendar-day">23</div><div class="calendar-day">24</div><div class="calendar-day">25</div>
+                    <div class="calendar-day">26</div><div class="calendar-day">27</div><div class="calendar-day">28</div><div class="calendar-day">29</div><div class="calendar-day">30</div><div class="calendar-day">31</div>
                 </div>
             </div>
 
@@ -265,11 +332,11 @@
         </div>
     </section>
 
-    <!-- FOTO 1 - SIN FRASE -->
+    <!-- FOTO 1 -->
     <section class="py-20 px-6 bg-soft-white text-center">
         <div class="max-w-5xl mx-auto">
             <img src="https://raw.githubusercontent.com/regina15033/Nuestra-Boda-Oscar-Y-Fany-/main/WhatsApp%20Image%202026-05-01%20at%205.21.33%20PM.jpeg" 
-                 alt="Foto 1" class="image-divider-frame photo-static reveal">
+                 alt="Sesión Fotográfica" class="image-short-frame photo-static reveal">
         </div>
     </section>
 
@@ -280,7 +347,7 @@
                 Dos caminos se cruzaron, dos historias se unieron y dos corazones decidieron caminar juntos para siempre.
             </p>
             <p class="font-script text-3xl text-gold-subtle mt-8">
-                Con mucha alegría te invitamos a celebrar el inicio de nuestra vida como esposos.
+                Uniendo nuestras vidas bajo la bendición de Dios.
             </p>
         </div>
     </section>
@@ -313,15 +380,6 @@
         </div>
     </section>
 
-    <!-- FOTO 2 + FRASE -->
-    <section class="py-16 px-6 bg-soft-white text-center">
-        <div class="max-w-5xl mx-auto">
-            <img src="https://raw.githubusercontent.com/regina15033/Nuestra-Boda-Oscar-Y-Fany-/main/WhatsApp%20Image%202026-05-01%20at%205.22.05%20PM.jpeg" 
-                 alt="Foto 2" class="image-divider-frame photo-static reveal">
-            <p class="font-script text-3xl text-navy-blue mt-8 reveal italic">Te amaré cien años más...</p>
-        </div>
-    </section>
-
     <!-- UBICACIONES -->
     <section class="py-32 px-6 bg-white">
         <div class="max-w-5xl mx-auto">
@@ -342,19 +400,18 @@
         </div>
     </section>
 
-    <!-- FOTO 3 + FRASE -->
-    <section class="py-16 px-6 bg-soft-white text-center">
+    <!-- SECCIÓN FOTO ADICIONAL DESPUÉS DE RECEPCIÓN -->
+    <section class="py-20 px-6 bg-soft-white text-center">
         <div class="max-w-5xl mx-auto">
-            <img src="https://raw.githubusercontent.com/regina15033/Nuestra-Boda-Oscar-Y-Fany-/main/WhatsApp%20Image%202026-05-01%20at%205.21.34%20PM%20(1).jpeg" 
-                 alt="Foto 3" class="image-divider-frame photo-static reveal">
-            <p class="font-script text-3xl text-navy-blue mt-8 reveal italic">Juntos por siempre.</p>
+            <img src="https://raw.githubusercontent.com/regina15033/Nuestra-Boda-Oscar-Y-Fany-/main/WhatsApp%20Image%202026-05-01%20at%205.22.05%20PM.jpeg" 
+                 alt="Galería Adicional" class="image-short-frame photo-static reveal">
+            <p class="font-script text-3xl text-navy-blue mt-10 reveal italic">Momentos inolvidables...</p>
         </div>
     </section>
 
-    <!-- CIERRE -->
     <footer class="py-40 bg-navy-premium text-white text-center">
         <div class="reveal">
-            <p class="font-script text-5xl text-gold-bright mb-16">¡Te esperamos!</p>
+            <p class="font-script text-5xl text-gold-bright mb-12">¡Te esperamos para celebrar juntos!</p>
             <h2 class="font-script text-7xl md:text-7xl mb-4">Oscar & Fany</h2>
             <p class="font-serif-elegant text-[10px] tracking-[0.5em] opacity-40 uppercase mt-12">04 . 07 . 26</p>
         </div>
@@ -396,17 +453,31 @@
         }
 
         audio.ontimeupdate = () => {
-            const progress = (audio.currentTime / audio.duration) * 100;
-            progressBar.style.width = progress + "%";
+            if (audio.duration) {
+                const progress = (audio.currentTime / audio.duration) * 100;
+                progressBar.style.width = progress + "%";
+            }
         };
+
+        function seek(event) {
+            const container = document.getElementById('progress-container');
+            const rect = container.getBoundingClientRect();
+            const x = event.clientX - rect.left;
+            const width = rect.width;
+            const percentage = x / width;
+            audio.currentTime = percentage * audio.duration;
+        }
 
         function reveal() {
             const reveals = document.querySelectorAll('.reveal, .photo-static');
             reveals.forEach(r => {
                 const revealTop = r.getBoundingClientRect().top;
-                if (revealTop < window.innerHeight - 100) r.classList.add('active');
+                if (revealTop < window.innerHeight - 100) {
+                    r.classList.add('active');
+                }
             });
         }
+        
         window.addEventListener('scroll', reveal);
 
         const target = new Date("Jul 4, 2026 14:00:00").getTime();
@@ -419,7 +490,13 @@
             document.getElementById('seconds').innerText = Math.floor((gap % (1000 * 60)) / 1000).toString().padStart(2, '0');
         }, 1000);
 
-        window.onload = reveal;
+        window.onload = () => {
+            setTimeout(() => {
+                const initialReveals = document.querySelectorAll('#hero-section .reveal');
+                initialReveals.forEach(r => r.classList.add('active'));
+                reveal();
+            }, 100);
+        };
     </script>
 </body>
 </html>

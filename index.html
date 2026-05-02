@@ -148,7 +148,7 @@
         .hero-image-frame {
             width: 100%;
             max-width: 460px; 
-            height: 375px; 
+            height: 450px; /* Aumentado para el 20% más largo */
             object-fit: cover;
             border: 12px solid white;
             box-shadow: 0 30px 60px rgba(0,0,0,0.3);
@@ -187,48 +187,87 @@
             transition: all 0.4s ease;
         }
 
-        /* Calendario */
+        /* Calendario Corregido */
         .mini-calendar { 
             display: grid; 
             grid-template-columns: repeat(7, 1fr); 
             gap: 5px; 
-            max-width: 320px; 
+            max-width: 280px; 
             margin: 19px auto;
         }
+        
+        .calendar-day {
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
 
-        /* Cuenta regresiva en una sola línea */
+        .selected-date {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+        }
+
+        .selected-date svg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            fill: white; /* Corazón Blanco */
+            z-index: 1;
+        }
+
+        .selected-date span {
+            position: relative;
+            z-index: 2;
+            color: var(--navy-blue); /* Número 4 Azul */
+            font-weight: bold;
+        }
+
+        /* Cuenta regresiva Centrada y compacta */
+        .countdown-container {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            padding: 0 20px;
+        }
+
         .countdown-bg {
             background: rgba(10, 35, 66, 0.05);
-            padding: 25px 15px;
+            padding: 25px 10px;
             border-radius: 20px;
             backdrop-filter: blur(5px);
             width: 100%;
-            max-width: 500px;
+            max-width: 350px; /* Más compacto */
         }
 
         #countdown {
             display: flex;
             flex-direction: row;
-            justify-content: space-around;
+            justify-content: center;
             align-items: center;
-            gap: 5px;
+            gap: 15px; /* Menos separación */
         }
         
         #countdown .countdown-item {
             display: flex;
             flex-direction: column;
             align-items: center;
-            min-width: 60px;
+            min-width: 45px;
         }
 
         #countdown .countdown-item span {
-            font-size: 1.8rem; 
+            font-size: 1.5rem; 
             line-height: 1;
             font-weight: 400;
         }
         
         #countdown p {
-            font-size: 8px; 
+            font-size: 7px; 
             color: var(--navy-blue); 
             font-weight: 600;
             opacity: 0.8;
@@ -266,8 +305,9 @@
             padding-bottom: 5rem !important;
         }
         
-        .push-down-photo {
-            padding-top: 6.5rem !important; 
+        /* Portada un 20% más larga */
+        header#hero-section {
+            min-height: 120vh;
         }
     </style>
 </head>
@@ -280,7 +320,7 @@
     <div id="petals-container"></div>
 
     <!-- PÁGINA 1: PORTADA -->
-    <header id="hero-section" class="flex flex-col md:flex-row min-h-screen">
+    <header id="hero-section" class="flex flex-col md:flex-row">
         <div class="flex-1 bg-white flex flex-col justify-center items-center text-center p-7 relative overflow-hidden">
             <div class="reveal delay-1">
                 <h1 class="font-script text-7xl md:text-8xl text-navy-blue mb-3">Oscar</h1>
@@ -355,7 +395,7 @@
     </section>
 
     <!-- FOTO NOVIO 1 -->
-    <section class="push-down-photo px-6 bg-soft-white text-center">
+    <section class="px-6 bg-soft-white text-center">
         <div class="max-w-5xl mx-auto">
             <img src="https://raw.githubusercontent.com/regina15033/Nuestra-Boda-Oscar-Y-Fany-/main/WhatsApp%20Image%202026-05-01%20at%205.21.33%20PM.jpeg" 
                  alt="Foto de Novios 1" class="image-short-frame photo-static reveal">
@@ -374,29 +414,31 @@
         </div>
     </section>
 
-    <!-- CUENTA REGRESIVA -->
+    <!-- CUENTA REGRESIVA CENTRADA -->
     <section class="py-11 px-6 bg-white text-center flex flex-col items-center">
-        <div class="reveal countdown-bg mb-12">
-            <h3 class="font-serif-elegant text-[10px] tracking-[0.4em] text-navy-blue mb-5 uppercase opacity-60">Comienza la cuenta atrás</h3>
-            <div id="countdown" class="font-serif-elegant text-navy-blue">
-                <div class="countdown-item">
-                    <span id="days">00</span>
-                    <p class="uppercase tracking-widest">Días</p>
-                </div>
-                <div class="text-xl text-gold-subtle opacity-40 mb-5">:</div>
-                <div class="countdown-item">
-                    <span id="hours">00</span>
-                    <p class="uppercase tracking-widest">Hrs</p>
-                </div>
-                <div class="text-xl text-gold-subtle opacity-40 mb-5">:</div>
-                <div class="countdown-item">
-                    <span id="minutes">00</span>
-                    <p class="uppercase tracking-widest">Min</p>
-                </div>
-                <div class="text-xl text-gold-subtle opacity-40 mb-5">:</div>
-                <div class="countdown-item">
-                    <span id="seconds">00</span>
-                    <p class="uppercase tracking-widest">Seg</p>
+        <div class="reveal countdown-container mb-12">
+            <div class="countdown-bg">
+                <h3 class="font-serif-elegant text-[9px] tracking-[0.4em] text-navy-blue mb-5 uppercase opacity-60 text-center">Comienza la cuenta atrás</h3>
+                <div id="countdown" class="font-serif-elegant text-navy-blue">
+                    <div class="countdown-item">
+                        <span id="days">00</span>
+                        <p class="uppercase tracking-widest">Días</p>
+                    </div>
+                    <div class="text-lg text-gold-subtle opacity-40 mb-4">:</div>
+                    <div class="countdown-item">
+                        <span id="hours">00</span>
+                        <p class="uppercase tracking-widest">Hrs</p>
+                    </div>
+                    <div class="text-lg text-gold-subtle opacity-40 mb-4">:</div>
+                    <div class="countdown-item">
+                        <span id="minutes">00</span>
+                        <p class="uppercase tracking-widest">Min</p>
+                    </div>
+                    <div class="text-lg text-gold-subtle opacity-40 mb-4">:</div>
+                    <div class="countdown-item">
+                        <span id="seconds">00</span>
+                        <p class="uppercase tracking-widest">Seg</p>
+                    </div>
                 </div>
             </div>
         </div>

@@ -4,25 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- Configuración para la miniatura al compartir (Open Graph) -->
-    <title>Boda - Estefanía & Oscar Uriel</title>
-    <meta name="description" content="Acompáñanos a celebrar nuestra unión el 04 de Julio de 2026.">
-    <meta property="og:title" content="Invitación de Boda - Estefanía & Oscar Uriel">
-    <meta property="og:description" content="Te esperamos para celebrar juntos este día tan especial.">
-    <meta property="og:image" content="https://raw.githubusercontent.com/regina15033/Nuestra-Boda-Oscar-Y-Fany-/main/WhatsApp%20Image%202026-05-01%20at%205.21.34%20PM%20(1).jpeg">
-    <meta property="og:type" content="website">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="https://raw.githubusercontent.com/regina15033/Nuestra-Boda-Oscar-Y-Fany-/main/WhatsApp%20Image%202026-05-01%20at%205.21.34%20PM%20(1).jpeg">
-
+    <title>Boda - Oscar & Fany</title>
+    
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Great+Vibes&family=Montserrat:wght@200;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Great+Vibes&family=Montserrat:wght@200;300;400;600&display=swap" rel="stylesheet">
+    
     <style>
         :root {
             --navy-blue: #0a2342;
+            --navy-deep: #05162a;
             --soft-white: #fafafa;
             --gold-subtle: #c5a059;
+            --gold-bright: #e5c07b;
             --ivory: #ffffff;
         }
+
+        * { -webkit-tap-highlight-color: transparent; }
 
         body {
             background-color: var(--soft-white);
@@ -36,292 +33,356 @@
         .font-serif-elegant { font-family: 'Cinzel', serif; }
         .font-script { font-family: 'Great Vibes', cursive; }
 
-        /* Estilo de Papel Rasgado */
-        .torn-edge {
-            position: relative;
-            background: var(--ivory);
-            padding-bottom: 50px;
-        }
-
-        .torn-edge::after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 40px;
-            background-color: var(--soft-white);
-            clip-path: polygon(0% 0%, 5% 40%, 10% 0%, 15% 50%, 20% 0%, 25% 30%, 30% 0%, 35% 60%, 40% 0%, 45% 40%, 50% 0%, 55% 50%, 60% 0%, 65% 30%, 70% 0%, 75% 60%, 80% 0%, 85% 40%, 90% 0%, 95% 50%, 100% 0%, 100% 100%, 0% 100%);
-            z-index: 20;
-        }
-
-        /* Diseño de Portada Invertido */
-        .split-hero {
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
-            width: 100%;
-        }
-
-        @media (min-width: 768px) {
-            .split-hero { flex-direction: row-reverse; } 
-        }
-
-        .hero-left {
-            flex: 1;
-            background-color: var(--navy-blue);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 1rem;
-            position: relative;
-            z-index: 10;
-        }
-
-        .hero-right {
-            flex: 1;
-            background-color: var(--ivory);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 3rem;
-            text-align: center;
-            position: relative;
-            z-index: 5;
-        }
-
-        .hero-image-frame {
-            width: 85%;
-            height: 85%;
-            object-fit: cover;
-            border: 15px solid white;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
-        }
-
-        .flower-decoration {
-            position: absolute;
-            width: 180px;
-            z-index: 5;
-            opacity: 0.8;
-            pointer-events: none;
-        }
-
-        .flower-top-right { top: 20px; right: 20px; }
-        .flower-bottom-left { bottom: 60px; left: 20px; transform: scaleX(-1); }
-
-        .calendar-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 2rem;
-            margin: 3rem 0;
-            border-top: 1px solid var(--gold-subtle);
-            border-bottom: 1px solid var(--gold-subtle);
-            padding: 2rem 0;
-        }
-
-        .calendar-icon {
-            font-size: 3rem;
-            color: var(--gold-subtle);
-        }
-
-        .date-display {
-            text-align: left;
-            border-left: 2px solid var(--gold-subtle);
-            padding-left: 2rem;
-        }
-
-        .fade-in {
+        .reveal {
             opacity: 0;
-            transform: translateY(20px);
-            transition: all 1s ease-out;
+            transform: translateY(30px);
+            transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1);
         }
 
-        .fade-in.visible {
+        .reveal.active {
             opacity: 1;
             transform: translateY(0);
         }
 
-        .music-control {
+        .bg-navy-premium {
+            background-color: var(--navy-blue);
+            background-image: radial-gradient(circle at center, var(--navy-blue) 0%, var(--navy-deep) 100%);
+            color: var(--soft-white);
+        }
+
+        /* Pétalos cayendo */
+        @keyframes fall {
+            0% { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+
+        .petal {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
-            z-index: 100;
+            top: -10vh;
             background: white;
-            border: 1px solid var(--gold-subtle);
+            opacity: 0.7;
+            border-radius: 150% 0 150% 0;
+            pointer-events: none;
+            z-index: 50;
+        }
+
+        /* Reproductor de Música Estilo Imagen */
+        .player-container {
+            margin-top: 40px;
+            width: 100%;
+            max-width: 300px;
+        }
+        
+        .player-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            letter-spacing: 2px;
             color: var(--gold-subtle);
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background: #e2e8f0;
+            border-radius: 2px;
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .progress-current {
+            width: 30%;
+            height: 100%;
+            background: var(--gold-subtle);
+            border-radius: 2px;
+            position: relative;
+        }
+
+        .progress-handle {
+            position: absolute;
+            right: -6px;
+            top: -4px;
+            width: 12px;
+            height: 12px;
+            background: var(--gold-subtle);
+            border-radius: 50%;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+        }
+
+        .player-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .control-btn {
+            color: var(--gold-subtle);
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        
+        .control-btn:hover { transform: scale(1.1); }
+        
+        .play-main {
             width: 50px;
             height: 50px;
+            border: 2px solid var(--gold-subtle);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            cursor: pointer;
         }
 
-        .music-control:hover {
-            background-color: var(--soft-white);
+        /* Fecha Lateral Grande */
+        .side-date {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            letter-spacing: 0.6em;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 2.2rem; /* Más grande */
+            border-left: 2px solid var(--gold-subtle);
+            padding-right: 20px;
+            font-weight: 700;
+        }
+
+        .hero-image-frame {
+            width: 100%;
+            max-width: 400px;
+            aspect-ratio: 3/4;
+            object-fit: cover;
+            border: 10px solid white;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+        }
+
+        .btn-gold {
+            background: transparent;
+            border: 1px solid var(--gold-subtle);
+            color: var(--gold-subtle);
+            padding: 12px 30px;
+            font-size: 10px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            transition: all 0.4s ease;
+        }
+
+        .btn-gold:hover {
+            background: var(--gold-subtle);
+            color: white;
         }
     </style>
 </head>
 <body>
 
-    <button id="music-btn" class="music-control" onclick="toggleMusic()" aria-label="Reproducir música">
-        <svg id="music-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path id="path-play" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
-            <path id="path-pause" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 9v6m4-6v6" />
-        </svg>
-    </button>
-
     <audio id="bg-music" loop>
         <source src="https://raw.githubusercontent.com/regina15033/BTS-BUTERFLY/main/BTS%20%EB%B0%A9%ED%83%84%EC%86%8C%EB%85%84%EB%8B%A8%20-%20Butterfly%20Piano%20Cover.mp3" type="audio/mpeg">
     </audio>
 
-    <header class="split-hero">
-        <div class="hero-right torn-edge">
-            <img src="https://cdn-icons-png.flaticon.com/512/3211/3211115.png" class="flower-decoration flower-top-right" style="filter: sepia(1) hue-rotate(330deg) brightness(0.9);" alt="decoración floral">
-            
-            <div class="fade-in visible px-4">
-                <p class="font-serif-elegant tracking-[0.4em] text-[11px] uppercase mb-8 text-slate-500 italic">Nos encantaría celebrar este día tan especial junto a ti</p>
+    <div id="petals-container"></div>
+
+    <!-- PÁGINA 1: PORTADA -->
+    <header class="flex flex-col md:flex-row min-h-screen">
+        <div class="flex-1 bg-white flex flex-col justify-center items-center text-center p-8 relative overflow-hidden">
+            <div class="reveal active">
+                <!-- Texto superior -->
+                <p class="font-script text-2xl text-gold-subtle mb-4">Nos encantaría celebrar este día tan especial junto a ti.</p>
                 
-                <h1 class="font-script text-7xl md:text-8xl text-navy-blue mb-4">Estefanía</h1>
-                <p class="font-serif-elegant text-xl my-2 text-gold-subtle">&</p>
-                <h1 class="font-script text-7xl md:text-8xl text-navy-blue mb-8">Oscar Uriel</h1>
+                <h1 class="font-script text-7xl md:text-9xl text-navy-blue mb-4">Oscar</h1>
+                <p class="font-serif-elegant text-2xl my-2 text-gold-subtle italic">&</p>
+                <h1 class="font-script text-7xl md:text-9xl text-navy-blue mb-8">Fany</h1>
                 
-                <div class="w-16 h-px bg-slate-200 mx-auto my-6"></div>
-                
-                <p class="font-serif-elegant text-xs tracking-[0.3em] uppercase text-slate-400">Te esperamos para celebrar</p>
-                <p class="font-script text-4xl text-gold-subtle mt-2">Juntos</p>
+                <!-- Texto inferior -->
+                <div class="mb-2">
+                    <p class="font-serif-elegant tracking-[0.3em] text-[12px] text-slate-500 uppercase">Te esperamos para celebrar</p>
+                    <p class="font-script text-4xl text-gold-subtle mt-1">Juntos</p>
+                </div>
+
+                <!-- Reproductor de Música -->
+                <div class="player-container mx-auto">
+                    <p class="player-title">Escucha nuestra canción</p>
+                    <div class="progress-bar">
+                        <div class="progress-current" id="music-progress">
+                            <div class="progress-handle"></div>
+                        </div>
+                    </div>
+                    <div class="player-controls">
+                        <svg class="control-btn w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
+                        <div class="control-btn play-main" onclick="toggleMusic()">
+                            <svg id="play-icon" class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                            <svg id="pause-icon" class="w-8 h-8 hidden" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+                            </svg>
+                        </div>
+                        <svg class="control-btn w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
+                    </div>
+                </div>
             </div>
-
-            <img src="https://cdn-icons-png.flaticon.com/512/3211/3211115.png" class="flower-decoration flower-bottom-left" style="filter: sepia(1) hue-rotate(330deg) brightness(0.9);" alt="decoración floral">
         </div>
-
-        <div class="hero-left">
-            <img src="https://raw.githubusercontent.com/regina15033/Nuestra-Boda-Oscar-Y-Fany-/main/WhatsApp%20Image%202026-05-01%20at%205.21.34%20PM%20(1).jpeg" 
-                 alt="Foto de la pareja" class="hero-image-frame">
+        <div class="flex-1 bg-navy-premium flex flex-col justify-center items-center p-10 relative">
+            <div class="reveal active flex items-center gap-10">
+                <div class="side-date font-serif-elegant">
+                    04 | 07 | 26
+                </div>
+                <img src="https://raw.githubusercontent.com/regina15033/Nuestra-Boda-Oscar-Y-Fany-/main/WhatsApp%20Image%202026-05-01%20at%205.21.34%20PM%20(1).jpeg" 
+                     alt="Oscar y Fany" class="hero-image-frame">
+            </div>
         </div>
     </header>
 
-    <section class="py-32 px-6 bg-[#fafafa] text-center relative z-30">
-        <div class="max-w-4xl mx-auto fade-in">
-            <h2 class="font-serif-elegant text-xl tracking-[0.5em] mb-12 text-navy-blue uppercase">Reserva la fecha</h2>
+    <!-- CALENDARIO -->
+    <section class="py-24 px-6 bg-navy-premium text-white text-center relative">
+        <div class="max-w-4xl mx-auto reveal">
+            <h3 class="font-serif-elegant text-sm tracking-[0.5em] opacity-60 mb-12 uppercase">Nuestra Fecha</h3>
             
-            <div class="calendar-container">
-                <div class="calendar-icon">
-                    <svg class="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M12 14l2 2m0 0l2-2m-2 2V12" />
-                    </svg>
+            <div class="flex flex-col md:flex-row justify-center items-center gap-16 mb-16">
+                <div class="text-center md:text-right border-r-0 md:border-r border-white/10 pr-0 md:pr-16">
+                    <p class="font-serif-elegant text-6xl text-gold-bright mb-2">Sábado</p>
+                    <p class="font-serif-elegant text-2xl tracking-[0.3em] uppercase">Julio 2026</p>
                 </div>
-                <div class="date-display">
-                    <p class="font-serif-elegant text-gold-subtle text-2xl tracking-[0.2em] mb-1">SÁBADO</p>
-                    <p class="font-serif-elegant text-6xl text-navy-blue leading-none mb-1">04</p>
-                    <p class="font-serif-elegant text-2xl tracking-[0.2em]">JULIO / 2026</p>
+
+                <style>
+                    .mini-calendar { display: grid; grid-template-columns: repeat(7, 1fr); gap: 12px; max-width: 320px; margin: 30px auto; }
+                    .calendar-day { padding: 8px 4px; color: white; font-size: 0.9rem; display: flex; align-items: center; justify-content: center; position: relative; }
+                    .heart-date::after { content: "❤"; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: rgba(255, 255, 255, 0.2); font-size: 2.8rem; z-index: -1; }
+                </style>
+
+                <div class="mini-calendar font-serif-elegant">
+                    <div class="opacity-40 text-[10px]">D</div><div class="opacity-40 text-[10px]">L</div><div class="opacity-40 text-[10px]">M</div><div class="opacity-40 text-[10px]">M</div><div class="opacity-40 text-[10px]">J</div><div class="opacity-40 text-[10px]">V</div><div class="opacity-40 text-[10px]">S</div>
+                    <div class="calendar-day opacity-20"></div><div class="calendar-day opacity-20"></div><div class="calendar-day opacity-20"></div><div class="calendar-day">1</div><div class="calendar-day">2</div><div class="calendar-day">3</div><div class="calendar-day heart-date font-bold">4</div>
+                    <div class="calendar-day">5</div><div class="calendar-day">6</div><div class="calendar-day">7</div><div class="calendar-day">8</div><div class="calendar-day">9</div><div class="calendar-day">10</div><div class="calendar-day">11</div>
                 </div>
             </div>
 
-            <p class="font-serif-elegant text-sm tracking-[0.3em] opacity-60">FALTAN</p>
-            <div id="countdown" class="flex justify-center gap-10 mt-8">
-                <div><span id="days" class="text-4xl font-serif-elegant text-navy-blue">00</span><p class="text-[9px] uppercase tracking-widest mt-2">Días</p></div>
-                <div><span id="hours" class="text-4xl font-serif-elegant text-navy-blue">00</span><p class="text-[9px] uppercase tracking-widest mt-2">Horas</p></div>
-                <div><span id="minutes" class="text-4xl font-serif-elegant text-navy-blue">00</span><p class="text-[9px] uppercase tracking-widest mt-2">Mins</p></div>
-            </div>
+            <button onclick="window.open('https://calendar.google.com/calendar/render?action=TEMPLATE&text=Boda+Oscar+%26+Fany&dates=20260704T230000Z/20260705T050000Z&details=Acomp%C3%B1anos+a+celebrar+nuestra+boda.&location=San+Juan+del+Rio,+Qro.')" 
+                    class="btn-gold border-white/40 text-white hover:bg-white hover:text-navy-blue">
+                Agendar en mi Calendario
+            </button>
         </div>
     </section>
 
-    <section class="py-24 px-6 bg-white torn-edge" style="transform: rotate(180deg); margin-top: -40px;">
-        <div style="transform: rotate(-180deg);">
-            <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-16 text-center fade-in">
+    <!-- CUENTA REGRESIVA -->
+    <section class="py-32 px-6 bg-white text-center">
+        <div class="max-w-4xl mx-auto reveal">
+            <h3 class="font-serif-elegant text-sm tracking-[0.4em] text-gold-subtle mb-12 uppercase">Faltan</h3>
+            <div id="countdown" class="flex justify-center gap-6 md:gap-16">
                 <div>
-                    <h3 class="font-serif-elegant text-[10px] tracking-[0.3em] text-gold-subtle mb-8 uppercase">Padres de la Novia</h3>
-                    <p class="font-serif-elegant text-xl">Verónica Ruíz Ruíz</p>
-                    <p class="font-serif-elegant text-xl">Isidoro Rodríguez Pichardo</p>
+                    <span id="days" class="text-5xl md:text-7xl font-serif-elegant text-navy-blue">00</span>
+                    <p class="text-[9px] uppercase tracking-widest mt-4 text-slate-400">Días</p>
                 </div>
+                <div class="text-4xl text-gold-subtle mt-2 opacity-30">/</div>
                 <div>
-                    <h3 class="font-serif-elegant text-[10px] tracking-[0.3em] text-gold-subtle mb-8 uppercase">Padres del Novio</h3>
-                    <p class="font-serif-elegant text-xl">Oscar Gómez Barrón</p>
-                    <p class="font-serif-elegant text-xl">Ma. Lourdes Irma Rios Olvera</p>
+                    <span id="hours" class="text-5xl md:text-7xl font-serif-elegant text-navy-blue">00</span>
+                    <p class="text-[9px] uppercase tracking-widest mt-4 text-slate-400">Horas</p>
+                </div>
+                <div class="text-4xl text-gold-subtle mt-2 opacity-30">/</div>
+                <div>
+                    <span id="minutes" class="text-5xl md:text-7xl font-serif-elegant text-navy-blue">00</span>
+                    <p class="text-[9px] uppercase tracking-widest mt-4 text-slate-400">Minutos</p>
                 </div>
             </div>
-            <div class="mt-20 text-center fade-in">
-                <h3 class="font-serif-elegant text-[10px] tracking-[0.3em] text-gold-subtle mb-8 uppercase">Nuestros Padrinos</h3>
-                <p class="font-serif-elegant text-xl">José Bravo Alegría & Georgina Rios Olvera</p>
+            <p class="font-serif-elegant text-lg text-slate-500 mt-20 tracking-widest italic">Para el gran día</p>
+        </div>
+    </section>
+
+    <!-- UBICACIONES -->
+    <section class="py-32 px-6 bg-white border-t border-slate-50">
+        <div class="max-w-5xl mx-auto reveal">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+                <div class="flex flex-col items-center text-center">
+                    <h3 class="font-script text-5xl mb-4 text-navy-blue">Ceremonia Religiosa</h3>
+                    <p class="font-serif-elegant text-xs text-gold-subtle mb-4 tracking-widest uppercase">18:00 Horas</p>
+                    <p class="font-serif-elegant text-sm text-slate-500 mb-8 italic">Parroquia de San Juan Bautista</p>
+                    <button onclick="window.open('https://maps.google.com')" class="btn-gold">Ver Mapa</button>
+                </div>
+                <div class="flex flex-col items-center text-center">
+                    <h3 class="font-script text-5xl mb-4 text-navy-blue">Recepción</h3>
+                    <p class="font-serif-elegant text-xs text-gold-subtle mb-4 tracking-widest uppercase">20:30 Horas</p>
+                    <p class="font-serif-elegant text-sm text-slate-500 mb-8 italic">Salón Jardín Camelinas</p>
+                    <button onclick="window.open('https://maps.google.com')" class="btn-gold">Ver Mapa</button>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="py-32 px-6 text-center">
-        <div class="max-w-5xl mx-auto fade-in">
-            <h2 class="font-serif-elegant text-3xl mb-20 tracking-[0.3em]">Celebración</h2>
-            <div class="grid md:grid-cols-2 gap-12">
-                <div class="p-12 border border-slate-100 shadow-sm hover:shadow-md transition-shadow bg-white">
-                    <h3 class="font-serif-elegant text-xl mb-6 text-gold-subtle">Ceremonia Religiosa</h3>
-                    <p class="font-bold text-sm mb-4">18:00 H</p>
-                    <p class="text-sm text-slate-500 mb-10 leading-relaxed italic">Parroquia de San Juan Bautista<br>Centro Histórico</p>
-                    <button onclick="window.open('https://maps.google.com')" class="border border-gold-subtle text-gold-subtle px-10 py-3 text-[10px] tracking-[0.3em] hover:bg-gold-subtle hover:text-white transition-all uppercase">Ver ubicación</button>
-                </div>
-                <div class="p-12 border border-slate-100 shadow-sm hover:shadow-md transition-shadow bg-white">
-                    <h3 class="font-serif-elegant text-xl mb-6 text-gold-subtle">Recepción</h3>
-                    <p class="font-bold text-sm mb-4">20:30 H</p>
-                    <p class="text-sm text-slate-500 mb-10 leading-relaxed italic">Hacienda Quinta Real<br>Dirección del Evento</p>
-                    <button onclick="window.open('https://maps.google.com')" class="border border-gold-subtle text-gold-subtle px-10 py-3 text-[10px] tracking-[0.3em] hover:bg-gold-subtle hover:text-white transition-all uppercase">Ver ubicación</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="py-40 text-center bg-navy-blue text-white">
-        <div class="fade-in">
-            <h2 class="font-script text-7xl mb-6">Estefanía & Oscar Uriel</h2>
-            <p class="font-serif-elegant text-[10px] tracking-[0.6em] opacity-40">04 . JULIO . 2026</p>
+    <footer class="py-40 bg-navy-premium text-white text-center">
+        <div class="reveal">
+            <h2 class="font-script text-8xl mb-4">Oscar & Fany</h2>
+            <p class="font-serif-elegant text-[11px] tracking-[0.5em] opacity-40 uppercase">04.07.26</p>
         </div>
     </footer>
 
     <script>
+        // Pétalos Cayendo (Efecto hacia abajo)
+        function createPetal() {
+            const container = document.getElementById('petals-container');
+            const petal = document.createElement('div');
+            petal.className = 'petal';
+            
+            const size = Math.random() * 8 + 4;
+            const left = Math.random() * 100;
+            const duration = Math.random() * 5 + 7;
+            const delay = Math.random() * 5;
+
+            petal.style.width = `${size}px`;
+            petal.style.height = `${size}px`;
+            petal.style.left = `${left}vw`;
+            // Animación fall ahora baja
+            petal.style.animation = `fall ${duration}s linear ${delay}s infinite`;
+            
+            container.appendChild(petal);
+            setTimeout(() => petal.remove(), (duration + delay) * 1000);
+        }
+        setInterval(createPetal, 300);
+
+        // Música y Barra de Progreso
         const audio = document.getElementById('bg-music');
-        const pathPlay = document.getElementById('path-play');
-        const pathPause = document.getElementById('path-pause');
+        const playIcon = document.getElementById('play-icon');
+        const pauseIcon = document.getElementById('pause-icon');
+        const progressBar = document.getElementById('music-progress');
         let isPlaying = false;
 
         function toggleMusic() {
             if (isPlaying) {
                 audio.pause();
-                pathPlay.classList.remove('hidden');
-                pathPause.classList.add('hidden');
+                playIcon.classList.remove('hidden');
+                pauseIcon.classList.add('hidden');
             } else {
-                audio.play().catch(e => console.log("Interacción requerida."));
-                pathPlay.classList.add('hidden');
-                pathPause.classList.remove('hidden');
+                audio.play();
+                playIcon.classList.add('hidden');
+                pauseIcon.classList.remove('hidden');
             }
             isPlaying = !isPlaying;
         }
 
-        function handleScroll() {
-            const elements = document.querySelectorAll('.fade-in');
-            elements.forEach(el => {
-                const rect = el.getBoundingClientRect();
-                if (rect.top < window.innerHeight * 0.9) el.classList.add('visible');
+        audio.ontimeupdate = () => {
+            const progress = (audio.currentTime / audio.duration) * 100;
+            progressBar.style.width = progress + "%";
+        };
+
+        // Scroll
+        function revealOnScroll() {
+            document.querySelectorAll('.reveal').forEach(el => {
+                if (el.getBoundingClientRect().top < window.innerHeight - 100) el.classList.add('active');
             });
         }
+        window.addEventListener('scroll', revealOnScroll);
 
+        // Countdown
         const targetDate = new Date("Jul 4, 2026 18:00:00").getTime();
-        function updateCountdown() {
-            const now = new Date().getTime();
-            const gap = targetDate - now;
-            const d = Math.floor(gap / (1000 * 60 * 60 * 24));
-            const h = Math.floor((gap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const m = Math.floor((gap % (1000 * 60 * 60)) / (1000 * 60));
-            document.getElementById('days').innerText = d < 10 ? '0'+d : d;
-            document.getElementById('hours').innerText = h < 10 ? '0'+h : h;
-            document.getElementById('minutes').innerText = m < 10 ? '0'+m : m;
-        }
+        setInterval(() => {
+            const gap = targetDate - new Date().getTime();
+            if (gap < 0) return;
+            document.getElementById('days').innerText = Math.floor(gap / (1000 * 60 * 60 * 24));
+            document.getElementById('hours').innerText = Math.floor((gap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            document.getElementById('minutes').innerText = Math.floor((gap % (1000 * 60 * 60)) / (1000 * 60));
+        }, 1000);
 
-        setInterval(updateCountdown, 1000);
-        window.addEventListener('scroll', handleScroll);
-        window.onload = () => { handleScroll(); updateCountdown(); };
+        window.onload = revealOnScroll;
     </script>
 </body>
 </html>

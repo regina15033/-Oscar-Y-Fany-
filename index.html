@@ -155,11 +155,11 @@
             box-shadow: 0 30px 60px rgba(0,0,0,0.3);
         }
 
-        /* Ajuste: Foto 1 reducida un 20% en altura (de 450px a 360px) */
+        /* Ajuste: Foto 1 reducida un 15% adicional (de 360px a 306px) */
         .image-short-frame {
             width: 100%;
             max-width: 600px;
-            height: 360px;
+            height: 306px;
             object-fit: cover;
             border: 12px solid white;
             box-shadow: 0 15px 35px rgba(0,0,0,0.1);
@@ -210,7 +210,7 @@
             position: relative; 
         }
 
-        /* Día 4 Especial: Corazón Blanco, Número Azul */
+        /* Día 4 Especial */
         .selected-date {
             width: 35px;
             height: 35px;
@@ -235,22 +235,42 @@
             font-weight: bold;
         }
 
-        /* Ajuste: Cuenta regresiva un 20% más grande */
+        /* Ajuste: Cuenta regresiva reducida un 3% (de 2.4rem a aprox 2.33rem) */
         #countdown {
             display: flex;
             flex-direction: row;
             justify-content: center;
             align-items: baseline;
-            gap: 18px; /* Gap aumentado ligeramente */
+            gap: 16px; 
         }
         
         #countdown .countdown-item span {
-            font-size: 2.4rem; /* Antes era por defecto (aprox 2rem), aumentado 20% */
+            font-size: 2.33rem; 
             line-height: 1;
         }
         
         #countdown p {
-            font-size: 9px; /* Aumentado proporcionalmente */
+            font-size: 8.7px; 
+        }
+
+        /* Separador de Corazón */
+        .heart-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+            opacity: 0.3;
+        }
+        .heart-divider .line {
+            height: 1px;
+            width: 60px;
+            background-color: var(--navy-blue);
+        }
+        .heart-divider svg {
+            width: 14px;
+            height: 14px;
+            fill: var(--navy-blue);
         }
     </style>
 </head>
@@ -353,8 +373,8 @@
         </div>
     </section>
 
-    <!-- FOTO 1: Reducida un 20% en altura -->
-    <section class="py-20 px-6 bg-soft-white text-center">
+    <!-- FOTO 1: Reducida un 15% adicional -->
+    <section class="py-16 px-6 bg-soft-white text-center">
         <div class="max-w-5xl mx-auto">
             <img src="https://raw.githubusercontent.com/regina15033/Nuestra-Boda-Oscar-Y-Fany-/main/WhatsApp%20Image%202026-05-01%20at%205.21.33%20PM.jpeg" 
                  alt="Sesión Fotográfica" class="image-short-frame photo-static reveal">
@@ -362,7 +382,7 @@
     </section>
 
     <!-- FRASE PRINCIPAL -->
-    <section class="py-16 px-8 bg-white text-center">
+    <section class="py-12 px-8 bg-white text-center">
         <div class="max-w-3xl mx-auto reveal">
             <p class="font-serif-elegant text-lg md:text-xl text-navy-blue leading-relaxed">
                 Dos caminos se cruzaron, dos historias se unieron y dos corazones decidieron caminar juntos para siempre.
@@ -373,11 +393,11 @@
         </div>
     </section>
 
-    <!-- CUENTA REGRESIVA: Aumentada un 20% -->
-    <section class="py-24 px-6 bg-white text-center border-y border-slate-50">
+    <!-- CUENTA REGRESIVA Y SEPARADOR -->
+    <section class="py-16 px-6 bg-white text-center">
         <div class="max-w-4xl mx-auto reveal">
-            <h3 class="font-serif-elegant text-[10px] tracking-[0.4em] text-gold-subtle mb-12 uppercase">Comienza la cuenta atrás</h3>
-            <div id="countdown" class="font-serif-elegant text-navy-blue">
+            <h3 class="font-serif-elegant text-[10px] tracking-[0.4em] text-gold-subtle mb-10 uppercase">Comienza la cuenta atrás</h3>
+            <div id="countdown" class="font-serif-elegant text-navy-blue mb-10">
                 <div class="countdown-item flex flex-col items-center">
                     <span id="days">00</span>
                     <p class="uppercase tracking-widest mt-2 text-slate-400">Días</p>
@@ -398,11 +418,18 @@
                     <p class="uppercase tracking-widest mt-2 text-slate-400">Seg</p>
                 </div>
             </div>
+
+            <!-- SEPARADOR CORAZÓN -->
+            <div class="heart-divider reveal">
+                <div class="line"></div>
+                <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                <div class="line"></div>
+            </div>
         </div>
     </section>
 
-    <!-- UBICACIONES -->
-    <section class="py-32 px-6 bg-white">
+    <!-- UBICACIONES: Menos separada de la sección anterior -->
+    <section class="py-20 px-6 bg-white">
         <div class="max-w-5xl mx-auto">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
                 <div class="flex flex-col items-center text-center reveal">

@@ -50,25 +50,25 @@
             color: var(--soft-white);
         }
 
-        /* Pétalos cayendo */
+        /* Pétalos cayendo - Más lentos */
         @keyframes fall {
             0% { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
-            10% { opacity: 0.8; }
-            90% { opacity: 0.8; }
-            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.6; }
+            100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
         }
 
         .petal {
             position: fixed;
             top: -10vh;
             background: white;
-            opacity: 0.7;
+            opacity: 0.5;
             border-radius: 150% 0 150% 0;
             pointer-events: none;
             z-index: 50;
         }
 
-        /* Reproductor de Música Estilo Imagen */
+        /* Reproductor de Música Azul */
         .player-container {
             margin-top: 40px;
             width: 100%;
@@ -77,26 +77,28 @@
         
         .player-title {
             font-family: 'Montserrat', sans-serif;
-            font-size: 14px;
+            font-size: 13px;
             letter-spacing: 2px;
-            color: var(--gold-subtle);
+            color: var(--navy-blue);
             margin-bottom: 15px;
             text-transform: uppercase;
+            font-weight: 600;
         }
 
         .progress-bar {
             width: 100%;
             height: 4px;
-            background: #e2e8f0;
+            background: #cbd5e1;
             border-radius: 2px;
             position: relative;
             margin-bottom: 20px;
+            cursor: pointer;
         }
 
         .progress-current {
-            width: 30%;
+            width: 0%;
             height: 100%;
-            background: var(--gold-subtle);
+            background: var(--navy-blue);
             border-radius: 2px;
             position: relative;
         }
@@ -107,9 +109,8 @@
             top: -4px;
             width: 12px;
             height: 12px;
-            background: var(--gold-subtle);
+            background: var(--navy-blue);
             border-radius: 50%;
-            box-shadow: 0 0 5px rgba(0,0,0,0.1);
         }
 
         .player-controls {
@@ -120,7 +121,7 @@
         }
 
         .control-btn {
-            color: var(--gold-subtle);
+            color: var(--navy-blue);
             cursor: pointer;
             transition: transform 0.2s;
         }
@@ -128,25 +129,21 @@
         .control-btn:hover { transform: scale(1.1); }
         
         .play-main {
-            width: 50px;
-            height: 50px;
-            border: 2px solid var(--gold-subtle);
+            width: 55px;
+            height: 55px;
+            border: 2px solid var(--navy-blue);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
-        /* Fecha Lateral Grande */
-        .side-date {
-            writing-mode: vertical-rl;
-            text-orientation: mixed;
-            letter-spacing: 0.6em;
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 2.2rem; /* Más grande */
-            border-left: 2px solid var(--gold-subtle);
-            padding-right: 20px;
-            font-weight: 700;
+        .photo-date {
+            letter-spacing: 0.4em;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.2rem;
+            margin-top: 20px;
+            font-weight: 300;
         }
 
         .hero-image-frame {
@@ -173,43 +170,80 @@
             background: var(--gold-subtle);
             color: white;
         }
+
+        /* Estilo Calendario */
+        .mini-calendar { 
+            display: grid; 
+            grid-template-columns: repeat(7, 1fr); 
+            gap: 10px; 
+            max-width: 320px; 
+            margin: 30px auto; 
+        }
+        .calendar-day { 
+            padding: 8px 4px; 
+            color: white; 
+            font-size: 0.85rem; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            position: relative; 
+        }
+        .calendar-header-day {
+            opacity: 0.5;
+            font-size: 10px;
+            padding-bottom: 5px;
+        }
+        .heart-date {
+            font-weight: bold;
+            color: var(--navy-blue) !important;
+            z-index: 2;
+        }
+        .heart-date::after { 
+            content: "❤"; 
+            position: absolute; 
+            top: 50%; 
+            left: 50%; 
+            transform: translate(-50%, -50%); 
+            color: white; 
+            font-size: 2.5rem; 
+            z-index: -1; 
+        }
     </style>
 </head>
 <body>
 
-    <audio id="bg-music" loop>
-        <source src="https://raw.githubusercontent.com/regina15033/BTS-BUTERFLY/main/BTS%20%EB%B0%A9%ED%83%84%EC%86%8C%EB%85%84%EB%8B%A8%20-%20Butterfly%20Piano%20Cover.mp3" type="audio/mpeg">
+    <audio id="bg-music">
+        <source src="https://raw.githubusercontent.com/regina15033/Nuestra-Boda-Oscar-Y-Fany-/main/%F0%9F%8C%B9%20Virl%C3%A1n%20Garc%C3%ADa%20-%20MMXX%C2%B4s%20(LetraLyrics)%20%F0%9F%8C%B9%F0%9F%98%8D.mp3" type="audio/mpeg">
     </audio>
 
     <div id="petals-container"></div>
 
     <!-- PÁGINA 1: PORTADA -->
-    <header class="flex flex-col md:flex-row min-h-screen">
+    <header id="hero-section" class="flex flex-col md:flex-row min-h-screen">
         <div class="flex-1 bg-white flex flex-col justify-center items-center text-center p-8 relative overflow-hidden">
             <div class="reveal active">
-                <!-- Texto superior -->
                 <p class="font-script text-2xl text-gold-subtle mb-4">Nos encantaría celebrar este día tan especial junto a ti.</p>
                 
                 <h1 class="font-script text-7xl md:text-9xl text-navy-blue mb-4">Oscar</h1>
                 <p class="font-serif-elegant text-2xl my-2 text-gold-subtle italic">&</p>
                 <h1 class="font-script text-7xl md:text-9xl text-navy-blue mb-8">Fany</h1>
                 
-                <!-- Texto inferior -->
                 <div class="mb-2">
                     <p class="font-serif-elegant tracking-[0.3em] text-[12px] text-slate-500 uppercase">Te esperamos para celebrar</p>
                     <p class="font-script text-4xl text-gold-subtle mt-1">Juntos</p>
                 </div>
 
-                <!-- Reproductor de Música -->
+                <!-- Reproductor de Música Azul -->
                 <div class="player-container mx-auto">
                     <p class="player-title">Escucha nuestra canción</p>
-                    <div class="progress-bar">
+                    <div class="progress-bar" id="progress-container">
                         <div class="progress-current" id="music-progress">
                             <div class="progress-handle"></div>
                         </div>
                     </div>
                     <div class="player-controls">
                         <svg class="control-btn w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
+                        
                         <div class="control-btn play-main" onclick="toggleMusic()">
                             <svg id="play-icon" class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M8 5v14l11-7z"/>
@@ -218,24 +252,26 @@
                                 <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
                             </svg>
                         </div>
+                        
                         <svg class="control-btn w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
                     </div>
                 </div>
             </div>
         </div>
+        
         <div class="flex-1 bg-navy-premium flex flex-col justify-center items-center p-10 relative">
-            <div class="reveal active flex items-center gap-10">
-                <div class="side-date font-serif-elegant">
-                    04 | 07 | 26
-                </div>
+            <div class="reveal active flex flex-col items-center">
                 <img src="https://raw.githubusercontent.com/regina15033/Nuestra-Boda-Oscar-Y-Fany-/main/WhatsApp%20Image%202026-05-01%20at%205.21.34%20PM%20(1).jpeg" 
                      alt="Oscar y Fany" class="hero-image-frame">
+                <div class="photo-date font-serif-elegant">
+                    04 | 07 | 26
+                </div>
             </div>
         </div>
     </header>
 
     <!-- CALENDARIO -->
-    <section class="py-24 px-6 bg-navy-premium text-white text-center relative">
+    <section id="calendar-section" class="py-24 px-6 bg-navy-premium text-white text-center relative">
         <div class="max-w-4xl mx-auto reveal">
             <h3 class="font-serif-elegant text-sm tracking-[0.5em] opacity-60 mb-12 uppercase">Nuestra Fecha</h3>
             
@@ -245,20 +281,20 @@
                     <p class="font-serif-elegant text-2xl tracking-[0.3em] uppercase">Julio 2026</p>
                 </div>
 
-                <style>
-                    .mini-calendar { display: grid; grid-template-columns: repeat(7, 1fr); gap: 12px; max-width: 320px; margin: 30px auto; }
-                    .calendar-day { padding: 8px 4px; color: white; font-size: 0.9rem; display: flex; align-items: center; justify-content: center; position: relative; }
-                    .heart-date::after { content: "❤"; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: rgba(255, 255, 255, 0.2); font-size: 2.8rem; z-index: -1; }
-                </style>
-
                 <div class="mini-calendar font-serif-elegant">
-                    <div class="opacity-40 text-[10px]">D</div><div class="opacity-40 text-[10px]">L</div><div class="opacity-40 text-[10px]">M</div><div class="opacity-40 text-[10px]">M</div><div class="opacity-40 text-[10px]">J</div><div class="opacity-40 text-[10px]">V</div><div class="opacity-40 text-[10px]">S</div>
-                    <div class="calendar-day opacity-20"></div><div class="calendar-day opacity-20"></div><div class="calendar-day opacity-20"></div><div class="calendar-day">1</div><div class="calendar-day">2</div><div class="calendar-day">3</div><div class="calendar-day heart-date font-bold">4</div>
+                    <!-- Encabezados -->
+                    <div class="calendar-header-day">D</div><div class="calendar-header-day">L</div><div class="calendar-header-day">M</div><div class="calendar-header-day">M</div><div class="calendar-header-day">J</div><div class="calendar-header-day">V</div><div class="calendar-header-day">S</div>
+                    <!-- Julio 2026 empieza en Miércoles (1) -->
+                    <div class="calendar-day opacity-0"></div><div class="calendar-day opacity-0"></div><div class="calendar-day opacity-0"></div>
+                    <div class="calendar-day">1</div><div class="calendar-day">2</div><div class="calendar-day">3</div><div class="calendar-day heart-date">4</div>
                     <div class="calendar-day">5</div><div class="calendar-day">6</div><div class="calendar-day">7</div><div class="calendar-day">8</div><div class="calendar-day">9</div><div class="calendar-day">10</div><div class="calendar-day">11</div>
+                    <div class="calendar-day">12</div><div class="calendar-day">13</div><div class="calendar-day">14</div><div class="calendar-day">15</div><div class="calendar-day">16</div><div class="calendar-day">17</div><div class="calendar-day">18</div>
+                    <div class="calendar-day">19</div><div class="calendar-day">20</div><div class="calendar-day">21</div><div class="calendar-day">22</div><div class="calendar-day">23</div><div class="calendar-day">24</div><div class="calendar-day">25</div>
+                    <div class="calendar-day">26</div><div class="calendar-day">27</div><div class="calendar-day">28</div><div class="calendar-day">29</div><div class="calendar-day">30</div><div class="calendar-day">31</div><div class="calendar-day opacity-0"></div>
                 </div>
             </div>
 
-            <button onclick="window.open('https://calendar.google.com/calendar/render?action=TEMPLATE&text=Boda+Oscar+%26+Fany&dates=20260704T230000Z/20260705T050000Z&details=Acomp%C3%B1anos+a+celebrar+nuestra+boda.&location=San+Juan+del+Rio,+Qro.')" 
+            <button onclick="window.open('https://calendar.google.com/calendar/render?action=TEMPLATE&text=Boda+Oscar+%26+Fany&dates=20260704T140000Z/20260705T040000Z&details=Acomp%C3%B1anos+a+celebrar+nuestra+boda.+Ceremonia+2:00+PM,+Recepci%C3%B3n+3:00+PM.&location=San+Juan+del+Rio,+Qro.')" 
                     class="btn-gold border-white/40 text-white hover:bg-white hover:text-navy-blue">
                 Agendar en mi Calendario
             </button>
@@ -269,20 +305,25 @@
     <section class="py-32 px-6 bg-white text-center">
         <div class="max-w-4xl mx-auto reveal">
             <h3 class="font-serif-elegant text-sm tracking-[0.4em] text-gold-subtle mb-12 uppercase">Faltan</h3>
-            <div id="countdown" class="flex justify-center gap-6 md:gap-16">
+            <div id="countdown" class="flex flex-wrap justify-center gap-6 md:gap-12">
                 <div>
                     <span id="days" class="text-5xl md:text-7xl font-serif-elegant text-navy-blue">00</span>
                     <p class="text-[9px] uppercase tracking-widest mt-4 text-slate-400">Días</p>
                 </div>
-                <div class="text-4xl text-gold-subtle mt-2 opacity-30">/</div>
+                <div class="hidden md:block text-4xl text-gold-subtle mt-2 opacity-30">/</div>
                 <div>
                     <span id="hours" class="text-5xl md:text-7xl font-serif-elegant text-navy-blue">00</span>
-                    <p class="text-[9px] uppercase tracking-widest mt-4 text-slate-400">Horas</p>
+                    <p class="text-[9px] uppercase tracking-widest mt-4 text-slate-400">Hrs</p>
                 </div>
-                <div class="text-4xl text-gold-subtle mt-2 opacity-30">/</div>
+                <div class="hidden md:block text-4xl text-gold-subtle mt-2 opacity-30">/</div>
                 <div>
                     <span id="minutes" class="text-5xl md:text-7xl font-serif-elegant text-navy-blue">00</span>
-                    <p class="text-[9px] uppercase tracking-widest mt-4 text-slate-400">Minutos</p>
+                    <p class="text-[9px] uppercase tracking-widest mt-4 text-slate-400">Min</p>
+                </div>
+                <div class="hidden md:block text-4xl text-gold-subtle mt-2 opacity-30">/</div>
+                <div>
+                    <span id="seconds" class="text-5xl md:text-7xl font-serif-elegant text-navy-blue">00</span>
+                    <p class="text-[9px] uppercase tracking-widest mt-4 text-slate-400">Seg</p>
                 </div>
             </div>
             <p class="font-serif-elegant text-lg text-slate-500 mt-20 tracking-widest italic">Para el gran día</p>
@@ -295,15 +336,15 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
                 <div class="flex flex-col items-center text-center">
                     <h3 class="font-script text-5xl mb-4 text-navy-blue">Ceremonia Religiosa</h3>
-                    <p class="font-serif-elegant text-xs text-gold-subtle mb-4 tracking-widest uppercase">18:00 Horas</p>
-                    <p class="font-serif-elegant text-sm text-slate-500 mb-8 italic">Parroquia de San Juan Bautista</p>
-                    <button onclick="window.open('https://maps.google.com')" class="btn-gold">Ver Mapa</button>
+                    <p class="font-serif-elegant text-xs text-gold-subtle mb-4 tracking-widest uppercase">14:00 Horas</p>
+                    <p class="font-serif-elegant text-sm text-slate-500 mb-8 italic">Parroquia de Nuestra Señora de Guadalupe</p>
+                    <button onclick="window.open('https://www.google.com/maps/place/Parroquia+de+Nuestra+Se%C3%B1ora+de+Guadalupe/@20.4218824,-100.0689248,17z')" class="btn-gold">Ver Mapa</button>
                 </div>
                 <div class="flex flex-col items-center text-center">
                     <h3 class="font-script text-5xl mb-4 text-navy-blue">Recepción</h3>
-                    <p class="font-serif-elegant text-xs text-gold-subtle mb-4 tracking-widest uppercase">20:30 Horas</p>
-                    <p class="font-serif-elegant text-sm text-slate-500 mb-8 italic">Salón Jardín Camelinas</p>
-                    <button onclick="window.open('https://maps.google.com')" class="btn-gold">Ver Mapa</button>
+                    <p class="font-serif-elegant text-xs text-gold-subtle mb-4 tracking-widest uppercase">15:00 Horas</p>
+                    <p class="font-serif-elegant text-sm text-slate-500 mb-8 italic">Salón De Eventos "Los Arcos"</p>
+                    <button onclick="window.open('https://www.google.com/maps/place/Salon+De+Eventos+%22Los+Arcos%22,+76824+La+Estancia,+Qro./data=!4m2!3m1!1s0x85d372b45826a623:0x5efd0a2245c3cfe7')" class="btn-gold">Ver Mapa</button>
                 </div>
             </div>
         </div>
@@ -317,33 +358,36 @@
     </footer>
 
     <script>
-        // Pétalos Cayendo (Efecto hacia abajo)
+        // Pétalos Cayendo - Ajuste de velocidad y espaciado
         function createPetal() {
+            // No crear pétalos si estamos en la portada (primeros 100vh)
+            if (window.scrollY < window.innerHeight - 200) return;
+
             const container = document.getElementById('petals-container');
             const petal = document.createElement('div');
             petal.className = 'petal';
             
             const size = Math.random() * 8 + 4;
             const left = Math.random() * 100;
-            const duration = Math.random() * 5 + 7;
+            const duration = Math.random() * 8 + 12;
             const delay = Math.random() * 5;
 
             petal.style.width = `${size}px`;
             petal.style.height = `${size}px`;
             petal.style.left = `${left}vw`;
-            // Animación fall ahora baja
             petal.style.animation = `fall ${duration}s linear ${delay}s infinite`;
             
             container.appendChild(petal);
             setTimeout(() => petal.remove(), (duration + delay) * 1000);
         }
-        setInterval(createPetal, 300);
+        setInterval(createPetal, 800);
 
-        // Música y Barra de Progreso
+        // Música
         const audio = document.getElementById('bg-music');
         const playIcon = document.getElementById('play-icon');
         const pauseIcon = document.getElementById('pause-icon');
         const progressBar = document.getElementById('music-progress');
+        const progressContainer = document.getElementById('progress-container');
         let isPlaying = false;
 
         function toggleMusic() {
@@ -352,7 +396,7 @@
                 playIcon.classList.remove('hidden');
                 pauseIcon.classList.add('hidden');
             } else {
-                audio.play();
+                audio.play().catch(e => console.log("Audio play error:", e));
                 playIcon.classList.add('hidden');
                 pauseIcon.classList.remove('hidden');
             }
@@ -360,11 +404,20 @@
         }
 
         audio.ontimeupdate = () => {
-            const progress = (audio.currentTime / audio.duration) * 100;
-            progressBar.style.width = progress + "%";
+            if (audio.duration) {
+                const progress = (audio.currentTime / audio.duration) * 100;
+                progressBar.style.width = progress + "%";
+            }
         };
 
-        // Scroll
+        progressContainer.onclick = (e) => {
+            const width = progressContainer.clientWidth;
+            const clickX = e.offsetX;
+            const duration = audio.duration;
+            audio.currentTime = (clickX / width) * duration;
+        };
+
+        // Scroll Reveal
         function revealOnScroll() {
             document.querySelectorAll('.reveal').forEach(el => {
                 if (el.getBoundingClientRect().top < window.innerHeight - 100) el.classList.add('active');
@@ -372,14 +425,21 @@
         }
         window.addEventListener('scroll', revealOnScroll);
 
-        // Countdown
-        const targetDate = new Date("Jul 4, 2026 18:00:00").getTime();
+        // Countdown con Segundos
+        const targetDate = new Date("Jul 4, 2026 14:00:00").getTime();
         setInterval(() => {
             const gap = targetDate - new Date().getTime();
             if (gap < 0) return;
-            document.getElementById('days').innerText = Math.floor(gap / (1000 * 60 * 60 * 24));
-            document.getElementById('hours').innerText = Math.floor((gap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            document.getElementById('minutes').innerText = Math.floor((gap % (1000 * 60 * 60)) / (1000 * 60));
+            
+            const d = Math.floor(gap / (1000 * 60 * 60 * 24));
+            const h = Math.floor((gap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((gap % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((gap % (1000 * 60)) / 1000);
+
+            document.getElementById('days').innerText = d.toString().padStart(2, '0');
+            document.getElementById('hours').innerText = h.toString().padStart(2, '0');
+            document.getElementById('minutes').innerText = m.toString().padStart(2, '0');
+            document.getElementById('seconds').innerText = s.toString().padStart(2, '0');
         }, 1000);
 
         window.onload = revealOnScroll;

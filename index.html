@@ -36,7 +36,7 @@
         /* Sistema de Animaciones */
         .reveal {
             opacity: 0;
-            transform: translateY(30px);
+            transform: translateY(28px); /* Reducido 5% de 30px */
             transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1);
         }
 
@@ -82,10 +82,10 @@
 
         /* Reproductor Estilo Azul Transparente */
         .player-container {
-            margin-top: 30px;
+            margin-top: 28px; /* Reducido 5% de 30px */
             width: 100%;
             max-width: 320px;
-            padding: 20px 0;
+            padding: 19px 0; /* Reducido 5% de 20px */
             background: transparent;
         }
         
@@ -93,14 +93,14 @@
             font-size: 14px;
             letter-spacing: 2px;
             color: var(--navy-blue);
-            margin-bottom: 20px;
+            margin-bottom: 19px; /* Reducido 5% */
         }
 
         .progress-bar {
             width: 100%;
             height: 3px;
             background: rgba(10, 35, 66, 0.1);
-            margin-bottom: 20px;
+            margin-bottom: 19px; /* Reducido 5% */
             cursor: pointer;
             border-radius: 2px;
             position: relative;
@@ -146,21 +146,21 @@
         .play-main-circle:active { transform: scale(0.9); }
 
         /* Imágenes */
-        /* PORTADA: Ajustada a la mitad (aprox 340px) */
+        /* PORTADA: Aumentada un 5% (de 340px a 357px) */
         .hero-image-frame {
             width: 100%;
             max-width: 460px; 
-            height: 340px; /* Reducido a la mitad de 680px */
+            height: 357px; 
             object-fit: cover;
             border: 12px solid white;
             box-shadow: 0 30px 60px rgba(0,0,0,0.3);
         }
 
-        /* FOTOS SECCIONES: Tamaño normal restaurado */
+        /* FOTOS SECCIONES */
         .image-short-frame {
             width: 100%;
             max-width: 500px;
-            height: 380px; /* Restaurado a tamaño original */
+            height: 361px; /* Reducido un 5% para ajuste de página */
             object-fit: cover;
             border: 10px solid white;
             box-shadow: 0 15px 35px rgba(0,0,0,0.1);
@@ -172,7 +172,7 @@
             background: transparent;
             border: 1px solid var(--navy-blue);
             color: var(--navy-blue);
-            padding: 12px 30px;
+            padding: 11px 28px; /* Reducido 5% */
             font-size: 10px;
             letter-spacing: 3px;
             text-transform: uppercase;
@@ -187,7 +187,7 @@
             background: transparent;
             border: 1px solid var(--gold-subtle);
             color: var(--gold-subtle);
-            padding: 12px 30px;
+            padding: 11px 28px; /* Reducido 5% */
             font-size: 10px;
             letter-spacing: 3px;
             text-transform: uppercase;
@@ -200,7 +200,7 @@
             grid-template-columns: repeat(7, 1fr); 
             gap: 5px; 
             max-width: 320px; 
-            margin: 20px auto; 
+            margin: 19px auto; /* Reducido 5% */
         }
         .calendar-day { 
             height: 35px;
@@ -235,10 +235,10 @@
             font-weight: bold;
         }
 
-        /* Cuenta regresiva con fondo azul transparente */
+        /* Cuenta regresiva */
         .countdown-bg {
             background: rgba(10, 35, 66, 0.05);
-            padding: 40px 20px;
+            padding: 38px 19px; /* Reducido 5% */
             border-radius: 20px;
             box-shadow: inset 0 0 20px rgba(0,0,0,0.02);
             backdrop-filter: blur(5px);
@@ -249,7 +249,7 @@
             flex-direction: row;
             justify-content: center;
             align-items: baseline;
-            gap: 16px; 
+            gap: 15px; /* Reducido 5% */
         }
         
         #countdown .countdown-item span {
@@ -270,13 +270,13 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 15px;
-            margin: 30px 0;
+            gap: 14px; /* Reducido 5% */
+            margin: 28px 0; /* Reducido 5% */
             opacity: 0.4;
         }
         .heart-divider .line {
             height: 1px;
-            width: 40px;
+            width: 38px; /* Reducido 5% */
             background-color: var(--navy-blue);
         }
         .heart-divider svg {
@@ -284,6 +284,16 @@
             height: 12px;
             fill: var(--navy-blue);
         }
+
+        /* Reducción general de rellenos de sección (5% menos de espacio) */
+        section {
+            padding-top: 5.7rem !important; /* ~5% menos de 6rem */
+            padding-bottom: 5.7rem !important;
+        }
+        .py-24 { padding-top: 5.7rem; padding-bottom: 5.7rem; }
+        .py-12 { padding-top: 2.85rem; padding-bottom: 2.85rem; }
+        .py-10 { padding-top: 2.37rem; padding-bottom: 2.37rem; }
+        .py-20 { padding-top: 4.75rem; padding-bottom: 4.75rem; }
     </style>
 </head>
 <body>
@@ -296,23 +306,23 @@
 
     <!-- PÁGINA 1: PORTADA -->
     <header id="hero-section" class="flex flex-col md:flex-row min-h-screen">
-        <div class="flex-1 bg-white flex flex-col justify-center items-center text-center p-8 relative overflow-hidden">
+        <div class="flex-1 bg-white flex flex-col justify-center items-center text-center p-7 relative overflow-hidden">
             
             <div class="reveal delay-1">
-                <h1 class="font-script text-7xl md:text-8xl text-navy-blue mb-4">Oscar</h1>
+                <h1 class="font-script text-7xl md:text-8xl text-navy-blue mb-3">Oscar</h1>
                 <p class="font-serif-elegant text-xl my-2 text-gold-subtle italic">&</p>
-                <h1 class="font-script text-7xl md:text-8xl text-navy-blue mb-8">Fany</h1>
+                <h1 class="font-script text-7xl md:text-8xl text-navy-blue mb-7">Fany</h1>
             </div>
 
             <div class="reveal delay-2">
-                <p class="font-script text-xl md:text-2xl text-gold-subtle mb-10 opacity-80 px-4 max-w-md">
+                <p class="font-script text-xl md:text-2xl text-gold-subtle mb-9 opacity-80 px-4 max-w-md">
                     Nos encantaría celebrar este día tan especial junto a ti.
                 </p>
             </div>
             
             <div class="reveal delay-3">
                 <div class="player-container mx-auto">
-                    <div class="flex justify-between items-center mb-4">
+                    <div class="flex justify-between items-center mb-3">
                         <p class="player-label font-serif-elegant m-0">Escucha nuestra canción</p>
                     </div>
 
@@ -334,13 +344,13 @@
             </div>
         </div>
         
-        <div class="flex-1 bg-navy-premium flex flex-col justify-center items-center p-10 relative overflow-hidden">
+        <div class="flex-1 bg-navy-premium flex flex-col justify-center items-center p-9 relative overflow-hidden">
             <div class="flex flex-col items-center">
-                <!-- Foto de portada: Ahora reducida a la mitad -->
+                <!-- Foto de portada: Aumentada un 5% -->
                 <img src="https://raw.githubusercontent.com/regina15033/Nuestra-Boda-Oscar-Y-Fany-/main/WhatsApp%20Image%202026-05-01%20at%205.21.34%20PM%20(1).jpeg" 
                      alt="Oscar y Fany" class="hero-image-frame photo-static reveal delay-4">
                 
-                <div class="mt-8 text-center reveal delay-4">
+                <div class="mt-7 text-center reveal delay-4">
                     <p class="font-serif-elegant tracking-[0.4em] text-white/80 text-sm">04 | 07 | 26</p>
                 </div>
             </div>
@@ -348,12 +358,12 @@
     </header>
 
     <!-- CALENDARIO -->
-    <section id="calendar-section" class="py-24 px-6 bg-navy-premium text-white text-center relative">
+    <section id="calendar-section" class="py-20 px-6 bg-navy-premium text-white text-center relative">
         <div class="max-w-4xl mx-auto reveal">
-            <h3 class="font-serif-elegant text-xs tracking-[0.5em] opacity-60 mb-10 uppercase">Nuestra Fecha</h3>
+            <h3 class="font-serif-elegant text-xs tracking-[0.5em] opacity-60 mb-9 uppercase">Nuestra Fecha</h3>
             
-            <div class="flex flex-col md:flex-row justify-center items-center gap-12 mb-12">
-                <div class="text-center md:text-right border-r-0 md:border-r border-white/10 pr-0 md:pr-12">
+            <div class="flex flex-col md:flex-row justify-center items-center gap-11 mb-11">
+                <div class="text-center md:text-right border-r-0 md:border-r border-white/10 pr-0 md:pr-11">
                     <p class="font-serif-elegant text-5xl text-gold-bright mb-2">Sábado</p>
                     <p class="font-serif-elegant text-xl tracking-[0.3em] uppercase">Julio 2026</p>
                 </div>
@@ -380,8 +390,8 @@
         </div>
     </section>
 
-    <!-- FOTO NOVIO (Manteniendo tamaño original) -->
-    <section class="py-12 px-6 bg-soft-white text-center">
+    <!-- FOTO NOVIO (Segunda sección - Restaurada) -->
+    <section class="py-11 px-6 bg-soft-white text-center">
         <div class="max-w-5xl mx-auto">
             <img src="https://raw.githubusercontent.com/regina15033/Nuestra-Boda-Oscar-Y-Fany-/main/WhatsApp%20Image%202026-05-01%20at%205.21.33%20PM.jpeg" 
                  alt="Foto de Novios 1" class="image-short-frame photo-static reveal">
@@ -389,7 +399,7 @@
     </section>
 
     <!-- FRASE PRINCIPAL -->
-    <section class="py-10 px-8 bg-white text-center">
+    <section class="py-9 px-8 bg-white text-center">
         <div class="max-w-3xl mx-auto reveal">
             <p class="font-serif-elegant text-lg md:text-xl text-navy-blue leading-relaxed">
                 Dos caminos se cruzaron, dos historias se unieron y dos corazones decidieron caminar juntos para siempre.
@@ -400,10 +410,10 @@
         </div>
     </section>
 
-    <!-- CUENTA REGRESIVA CON FONDO AZUL TRANSPARENTE -->
-    <section class="py-12 px-6 bg-white text-center">
+    <!-- CUENTA REGRESIVA -->
+    <section class="py-11 px-6 bg-white text-center">
         <div class="max-w-xl mx-auto reveal countdown-bg">
-            <h3 class="font-serif-elegant text-[10px] tracking-[0.4em] text-navy-blue mb-8 uppercase opacity-60">Comienza la cuenta atrás</h3>
+            <h3 class="font-serif-elegant text-[10px] tracking-[0.4em] text-navy-blue mb-7 uppercase opacity-60">Comienza la cuenta atrás</h3>
             <div id="countdown" class="font-serif-elegant text-navy-blue">
                 <div class="countdown-item flex flex-col items-center">
                     <span id="days">00</span>
@@ -429,18 +439,18 @@
     </section>
 
     <!-- UBICACIONES -->
-    <section class="py-10 px-6 bg-white">
+    <section class="py-9 px-6 bg-white">
         <div class="max-w-5xl mx-auto">
             <div class="flex flex-col items-center">
                 <!-- MISA -->
-                <div class="flex flex-col items-center text-center reveal mb-10">
+                <div class="flex flex-col items-center text-center reveal mb-9">
                     <h3 class="font-script text-5xl mb-4 text-navy-blue">Misa</h3>
                     <p class="font-serif-elegant text-xs text-gold-subtle mb-4 tracking-widest uppercase">14:00 Horas</p>
                     <p class="font-serif-elegant text-sm text-slate-500 mb-8 px-4">Parroquia de Nuestra Señora de Guadalupe</p>
                     <button onclick="window.open('https://maps.app.goo.gl/3')" class="btn-navy">Ver Ubicación</button>
                 </div>
 
-                <!-- SEPARADOR CORAZÓN ENTRE MISA Y RECEPCIÓN -->
+                <!-- SEPARADOR CORAZÓN -->
                 <div class="heart-divider reveal">
                     <div class="line"></div>
                     <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
@@ -448,7 +458,7 @@
                 </div>
 
                 <!-- RECEPCIÓN -->
-                <div class="flex flex-col items-center text-center reveal mt-10">
+                <div class="flex flex-col items-center text-center reveal mt-9">
                     <h3 class="font-script text-5xl mb-4 text-navy-blue">Recepción</h3>
                     <p class="font-serif-elegant text-xs text-gold-subtle mb-4 tracking-widest uppercase">15:00 Horas</p>
                     <p class="font-serif-elegant text-sm text-slate-500 mb-8 px-4">Salón De Eventos "Los Arcos"</p>
@@ -459,19 +469,19 @@
     </section>
 
     <!-- SECCIÓN FOTO ADICIONAL -->
-    <section class="py-20 px-6 bg-soft-white text-center">
+    <section class="py-19 px-6 bg-soft-white text-center">
         <div class="max-w-5xl mx-auto">
             <img src="https://raw.githubusercontent.com/regina15033/Nuestra-Boda-Oscar-Y-Fany-/main/WhatsApp%20Image%202026-05-01%20at%205.22.05%20PM.jpeg" 
-                 alt="Galería Adicional" class="image-short-frame photo-static reveal" style="height: 380px;">
-            <p class="font-script text-3xl text-navy-blue mt-10 reveal italic">Momentos inolvidables...</p>
+                 alt="Galería Adicional" class="image-short-frame photo-static reveal">
+            <p class="font-script text-3xl text-navy-blue mt-9 reveal italic">Momentos inolvidables...</p>
         </div>
     </section>
 
-    <footer class="py-32 bg-navy-premium text-white text-center">
+    <footer class="py-28 bg-navy-premium text-white text-center">
         <div class="reveal">
-            <p class="font-script text-5xl text-gold-bright mb-12">¡Te esperamos para celebrar juntos!</p>
+            <p class="font-script text-5xl text-gold-bright mb-11">¡Te esperamos para celebrar juntos!</p>
             <h2 class="font-script text-7xl md:text-7xl mb-4">Oscar & Fany</h2>
-            <p class="font-serif-elegant text-[10px] tracking-[0.5em] opacity-40 uppercase mt-12">04 . 07 . 26</p>
+            <p class="font-serif-elegant text-[10px] tracking-[0.5em] opacity-40 uppercase mt-11">04 . 07 . 26</p>
         </div>
     </footer>
 

@@ -44,13 +44,35 @@
             transform: translateY(0);
         }
 
+        /* Efecto especial para la foto y fecha */
+        .photo-reveal {
+            opacity: 0;
+            transform: scale(0.95);
+            transition: all 1.5s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .photo-reveal.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .date-reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
+            transition-delay: 0.6s;
+        }
+        .date-reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         .bg-navy-premium {
             background-color: var(--navy-blue);
             background-image: radial-gradient(circle at center, var(--navy-blue) 0%, var(--navy-deep) 100%);
             color: var(--soft-white);
         }
 
-        /* Pétalos cayendo - Más lentos */
+        /* Pétalos cayendo */
         @keyframes fall {
             0% { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
             10% { opacity: 0.6; }
@@ -68,7 +90,7 @@
             z-index: 50;
         }
 
-        /* Reproductor de Música Azul */
+        /* Reproductor de Música */
         .player-container {
             margin-top: 40px;
             width: 100%;
@@ -141,18 +163,26 @@
         .photo-date {
             letter-spacing: 0.4em;
             color: rgba(255, 255, 255, 0.8);
-            font-size: 1.2rem;
-            margin-top: 20px;
+            font-size: 1.1rem;
+            margin-top: 25px;
             font-weight: 300;
         }
 
         .hero-image-frame {
             width: 100%;
-            max-width: 400px;
+            max-width: 380px;
             aspect-ratio: 3/4;
             object-fit: cover;
             border: 10px solid white;
             box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+        }
+
+        .image-divider-frame {
+            width: 100%;
+            max-width: 600px;
+            border: 12px solid white;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            margin: 0 auto;
         }
 
         .btn-gold {
@@ -171,7 +201,7 @@
             color: white;
         }
 
-        /* Estilo Calendario */
+        /* Calendario */
         .mini-calendar { 
             display: grid; 
             grid-template-columns: repeat(7, 1fr); 
@@ -208,6 +238,17 @@
             font-size: 2.5rem; 
             z-index: -1; 
         }
+
+        /* Ajustes Cuenta Regresiva Reducida */
+        .countdown-item span {
+            font-size: 2.5rem;
+            line-height: 1;
+        }
+        @media (min-width: 768px) {
+            .countdown-item span {
+                font-size: 3.5rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -233,7 +274,7 @@
                     <p class="font-script text-4xl text-gold-subtle mt-1">Juntos</p>
                 </div>
 
-                <!-- Reproductor de Música Azul -->
+                <!-- Reproductor de Música -->
                 <div class="player-container mx-auto">
                     <p class="player-title">Escucha nuestra canción</p>
                     <div class="progress-bar" id="progress-container">
@@ -259,11 +300,11 @@
             </div>
         </div>
         
-        <div class="flex-1 bg-navy-premium flex flex-col justify-center items-center p-10 relative">
-            <div class="reveal active flex flex-col items-center">
+        <div class="flex-1 bg-navy-premium flex flex-col justify-center items-center p-10 relative overflow-hidden">
+            <div class="flex flex-col items-center">
                 <img src="https://raw.githubusercontent.com/regina15033/Nuestra-Boda-Oscar-Y-Fany-/main/WhatsApp%20Image%202026-05-01%20at%205.21.34%20PM%20(1).jpeg" 
-                     alt="Oscar y Fany" class="hero-image-frame">
-                <div class="photo-date font-serif-elegant">
+                     alt="Oscar y Fany" class="hero-image-frame photo-reveal active">
+                <div class="photo-date font-serif-elegant date-reveal active">
                     04 | 07 | 26
                 </div>
             </div>
@@ -282,9 +323,7 @@
                 </div>
 
                 <div class="mini-calendar font-serif-elegant">
-                    <!-- Encabezados -->
                     <div class="calendar-header-day">D</div><div class="calendar-header-day">L</div><div class="calendar-header-day">M</div><div class="calendar-header-day">M</div><div class="calendar-header-day">J</div><div class="calendar-header-day">V</div><div class="calendar-header-day">S</div>
-                    <!-- Julio 2026 empieza en Miércoles (1) -->
                     <div class="calendar-day opacity-0"></div><div class="calendar-day opacity-0"></div><div class="calendar-day opacity-0"></div>
                     <div class="calendar-day">1</div><div class="calendar-day">2</div><div class="calendar-day">3</div><div class="calendar-day heart-date">4</div>
                     <div class="calendar-day">5</div><div class="calendar-day">6</div><div class="calendar-day">7</div><div class="calendar-day">8</div><div class="calendar-day">9</div><div class="calendar-day">10</div><div class="calendar-day">11</div>
@@ -301,32 +340,48 @@
         </div>
     </section>
 
-    <!-- CUENTA REGRESIVA -->
-    <section class="py-32 px-6 bg-white text-center">
+    <!-- FOTO DESPUÉS DEL CALENDARIO -->
+    <section class="py-16 px-6 bg-soft-white text-center">
+        <div class="max-w-5xl mx-auto reveal">
+            <img src="https://raw.githubusercontent.com/regina15033/Nuestra-Boda-Oscar-Y-Fany-/main/WhatsApp%20Image%202026-05-01%20at%205.21.33%20PM.jpeg" 
+                 alt="Momento especial" class="image-divider-frame">
+        </div>
+    </section>
+
+    <!-- CUENTA REGRESIVA REDUCIDA -->
+    <section class="py-24 px-6 bg-white text-center">
         <div class="max-w-4xl mx-auto reveal">
-            <h3 class="font-serif-elegant text-sm tracking-[0.4em] text-gold-subtle mb-12 uppercase">Faltan</h3>
-            <div id="countdown" class="flex flex-wrap justify-center gap-6 md:gap-12">
-                <div>
-                    <span id="days" class="text-5xl md:text-7xl font-serif-elegant text-navy-blue">00</span>
-                    <p class="text-[9px] uppercase tracking-widest mt-4 text-slate-400">Días</p>
+            <h3 class="font-serif-elegant text-[10px] tracking-[0.4em] text-gold-subtle mb-10 uppercase">Faltan</h3>
+            <div id="countdown" class="flex flex-wrap justify-center gap-4 md:gap-8">
+                <div class="countdown-item">
+                    <span id="days" class="font-serif-elegant text-navy-blue">00</span>
+                    <p class="text-[8px] uppercase tracking-widest mt-2 text-slate-400">Días</p>
                 </div>
-                <div class="hidden md:block text-4xl text-gold-subtle mt-2 opacity-30">/</div>
-                <div>
-                    <span id="hours" class="text-5xl md:text-7xl font-serif-elegant text-navy-blue">00</span>
-                    <p class="text-[9px] uppercase tracking-widest mt-4 text-slate-400">Hrs</p>
+                <div class="text-2xl text-gold-subtle mt-1 opacity-20">:</div>
+                <div class="countdown-item">
+                    <span id="hours" class="font-serif-elegant text-navy-blue">00</span>
+                    <p class="text-[8px] uppercase tracking-widest mt-2 text-slate-400">Hrs</p>
                 </div>
-                <div class="hidden md:block text-4xl text-gold-subtle mt-2 opacity-30">/</div>
-                <div>
-                    <span id="minutes" class="text-5xl md:text-7xl font-serif-elegant text-navy-blue">00</span>
-                    <p class="text-[9px] uppercase tracking-widest mt-4 text-slate-400">Min</p>
+                <div class="text-2xl text-gold-subtle mt-1 opacity-20">:</div>
+                <div class="countdown-item">
+                    <span id="minutes" class="font-serif-elegant text-navy-blue">00</span>
+                    <p class="text-[8px] uppercase tracking-widest mt-2 text-slate-400">Min</p>
                 </div>
-                <div class="hidden md:block text-4xl text-gold-subtle mt-2 opacity-30">/</div>
-                <div>
-                    <span id="seconds" class="text-5xl md:text-7xl font-serif-elegant text-navy-blue">00</span>
-                    <p class="text-[9px] uppercase tracking-widest mt-4 text-slate-400">Seg</p>
+                <div class="text-2xl text-gold-subtle mt-1 opacity-20">:</div>
+                <div class="countdown-item">
+                    <span id="seconds" class="font-serif-elegant text-navy-blue">00</span>
+                    <p class="text-[8px] uppercase tracking-widest mt-2 text-slate-400">Seg</p>
                 </div>
             </div>
-            <p class="font-serif-elegant text-lg text-slate-500 mt-20 tracking-widest italic">Para el gran día</p>
+            <p class="font-serif-elegant text-sm text-slate-500 mt-14 tracking-[0.2em] italic">Para el gran día</p>
+        </div>
+    </section>
+
+    <!-- FOTO DESPUÉS DE LA CUENTA REGRESIVA -->
+    <section class="py-16 px-6 bg-soft-white text-center">
+        <div class="max-w-5xl mx-auto reveal">
+            <img src="https://raw.githubusercontent.com/regina15033/Nuestra-Boda-Oscar-Y-Fany-/main/WhatsApp%20Image%202026-05-01%20at%205.22.05%20PM.jpeg" 
+                 alt="Celebración" class="image-divider-frame">
         </div>
     </section>
 
@@ -350,18 +405,25 @@
         </div>
     </section>
 
+    <!-- FOTO DESPUÉS DE LA RECEPCIÓN -->
+    <section class="py-16 px-6 bg-soft-white text-center">
+        <div class="max-w-5xl mx-auto reveal">
+            <img src="https://raw.githubusercontent.com/regina15033/Nuestra-Boda-Oscar-Y-Fany-/main/WhatsApp%20Image%202026-05-01%20at%205.21.34%20PM%20(1).jpeg" 
+                 alt="Final" class="image-divider-frame">
+        </div>
+    </section>
+
     <footer class="py-40 bg-navy-premium text-white text-center">
         <div class="reveal">
+            <p class="font-script text-5xl text-gold-bright mb-12">¡Te esperamos!</p>
             <h2 class="font-script text-8xl mb-4">Oscar & Fany</h2>
             <p class="font-serif-elegant text-[11px] tracking-[0.5em] opacity-40 uppercase">04.07.26</p>
         </div>
     </footer>
 
     <script>
-        // Pétalos Cayendo - Ajuste de velocidad y espaciado
         function createPetal() {
-            // No crear pétalos si estamos en la portada (primeros 100vh)
-            if (window.scrollY < window.innerHeight - 200) return;
+            if (window.scrollY < 200 && window.innerWidth < 768) return;
 
             const container = document.getElementById('petals-container');
             const petal = document.createElement('div');
@@ -382,7 +444,6 @@
         }
         setInterval(createPetal, 800);
 
-        // Música
         const audio = document.getElementById('bg-music');
         const playIcon = document.getElementById('play-icon');
         const pauseIcon = document.getElementById('pause-icon');
@@ -417,15 +478,13 @@
             audio.currentTime = (clickX / width) * duration;
         };
 
-        // Scroll Reveal
         function revealOnScroll() {
-            document.querySelectorAll('.reveal').forEach(el => {
-                if (el.getBoundingClientRect().top < window.innerHeight - 100) el.classList.add('active');
+            document.querySelectorAll('.reveal, .photo-reveal, .date-reveal').forEach(el => {
+                if (el.getBoundingClientRect().top < window.innerHeight - 50) el.classList.add('active');
             });
         }
         window.addEventListener('scroll', revealOnScroll);
 
-        // Countdown con Segundos
         const targetDate = new Date("Jul 4, 2026 14:00:00").getTime();
         setInterval(() => {
             const gap = targetDate - new Date().getTime();
@@ -442,7 +501,9 @@
             document.getElementById('seconds').innerText = s.toString().padStart(2, '0');
         }, 1000);
 
-        window.onload = revealOnScroll;
+        window.onload = () => {
+            revealOnScroll();
+        };
     </script>
 </body>
 </html>

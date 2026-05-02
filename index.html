@@ -146,22 +146,23 @@
         .play-main-circle:active { transform: scale(0.9); }
 
         /* Imágenes */
+        /* PORTADA: Ajustada a la mitad (aprox 340px) */
         .hero-image-frame {
             width: 100%;
             max-width: 460px; 
-            height: 680px;
+            height: 340px; /* Reducido a la mitad de 680px */
             object-fit: cover;
             border: 12px solid white;
             box-shadow: 0 30px 60px rgba(0,0,0,0.3);
         }
 
-        /* Ajuste: Foto 1 para que quepa en "una página" */
+        /* FOTOS SECCIONES: Tamaño normal restaurado */
         .image-short-frame {
             width: 100%;
             max-width: 500px;
-            height: 380px; 
+            height: 380px; /* Restaurado a tamaño original */
             object-fit: cover;
-            border: 12px solid white;
+            border: 10px solid white;
             box-shadow: 0 15px 35px rgba(0,0,0,0.1);
             margin: 0 auto;
         }
@@ -259,7 +260,7 @@
         
         #countdown p {
             font-size: 8.7px; 
-            color: var(--navy-blue); /* Ajustado a azul solicitado */
+            color: var(--navy-blue); 
             font-weight: 600;
             opacity: 0.8;
         }
@@ -335,6 +336,7 @@
         
         <div class="flex-1 bg-navy-premium flex flex-col justify-center items-center p-10 relative overflow-hidden">
             <div class="flex flex-col items-center">
+                <!-- Foto de portada: Ahora reducida a la mitad -->
                 <img src="https://raw.githubusercontent.com/regina15033/Nuestra-Boda-Oscar-Y-Fany-/main/WhatsApp%20Image%202026-05-01%20at%205.21.34%20PM%20(1).jpeg" 
                      alt="Oscar y Fany" class="hero-image-frame photo-static reveal delay-4">
                 
@@ -378,11 +380,11 @@
         </div>
     </section>
 
-    <!-- FOTO 1: Ajustada a una página -->
+    <!-- FOTO NOVIO (Manteniendo tamaño original) -->
     <section class="py-12 px-6 bg-soft-white text-center">
         <div class="max-w-5xl mx-auto">
             <img src="https://raw.githubusercontent.com/regina15033/Nuestra-Boda-Oscar-Y-Fany-/main/WhatsApp%20Image%202026-05-01%20at%205.21.33%20PM.jpeg" 
-                 alt="Sesión Fotográfica" class="image-short-frame photo-static reveal">
+                 alt="Foto de Novios 1" class="image-short-frame photo-static reveal">
         </div>
     </section>
 
@@ -460,7 +462,7 @@
     <section class="py-20 px-6 bg-soft-white text-center">
         <div class="max-w-5xl mx-auto">
             <img src="https://raw.githubusercontent.com/regina15033/Nuestra-Boda-Oscar-Y-Fany-/main/WhatsApp%20Image%202026-05-01%20at%205.22.05%20PM.jpeg" 
-                 alt="Galería Adicional" class="image-short-frame photo-static reveal">
+                 alt="Galería Adicional" class="image-short-frame photo-static reveal" style="height: 380px;">
             <p class="font-script text-3xl text-navy-blue mt-10 reveal italic">Momentos inolvidables...</p>
         </div>
     </section>

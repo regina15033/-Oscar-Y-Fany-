@@ -35,8 +35,8 @@
 
         .reveal {
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+            transform: translateY(20px);
+            transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
         }
 
         .reveal.active {
@@ -44,26 +44,12 @@
             transform: translateY(0);
         }
 
-        /* Efecto especial para la foto y fecha */
-        .photo-reveal {
+        .photo-static {
             opacity: 0;
-            transform: scale(0.95);
-            transition: all 1.5s cubic-bezier(0.22, 1, 0.36, 1);
+            transition: opacity 1.5s ease-out;
         }
-        .photo-reveal.active {
+        .photo-static.active {
             opacity: 1;
-            transform: scale(1);
-        }
-        
-        .date-reveal {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
-            transition-delay: 0.6s;
-        }
-        .date-reveal.active {
-            opacity: 1;
-            transform: translateY(0);
         }
 
         .bg-navy-premium {
@@ -72,7 +58,6 @@
             color: var(--soft-white);
         }
 
-        /* Pétalos cayendo */
         @keyframes fall {
             0% { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
             10% { opacity: 0.6; }
@@ -84,36 +69,32 @@
             position: fixed;
             top: -10vh;
             background: white;
-            opacity: 0.5;
+            opacity: 0.4;
             border-radius: 150% 0 150% 0;
             pointer-events: none;
             z-index: 50;
         }
 
-        /* Reproductor de Música */
         .player-container {
-            margin-top: 40px;
+            margin-top: 30px;
             width: 100%;
-            max-width: 300px;
+            max-width: 260px;
         }
         
-        .player-title {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 13px;
+        .player-label {
+            font-size: 10px;
             letter-spacing: 2px;
-            color: var(--navy-blue);
-            margin-bottom: 15px;
             text-transform: uppercase;
-            font-weight: 600;
+            color: var(--navy-blue);
+            margin-bottom: 12px;
+            opacity: 0.7;
         }
 
         .progress-bar {
             width: 100%;
-            height: 4px;
-            background: #cbd5e1;
-            border-radius: 2px;
-            position: relative;
-            margin-bottom: 20px;
+            height: 2px;
+            background: #e2e8f0;
+            margin-bottom: 15px;
             cursor: pointer;
         }
 
@@ -121,60 +102,31 @@
             width: 0%;
             height: 100%;
             background: var(--navy-blue);
-            border-radius: 2px;
-            position: relative;
         }
 
-        .progress-handle {
-            position: absolute;
-            right: -6px;
-            top: -4px;
-            width: 12px;
-            height: 12px;
-            background: var(--navy-blue);
-            border-radius: 50%;
-        }
-
-        .player-controls {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 20px;
-        }
-
-        .control-btn {
-            color: var(--navy-blue);
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
-        
-        .control-btn:hover { transform: scale(1.1); }
-        
         .play-main {
-            width: 55px;
-            height: 55px;
-            border: 2px solid var(--navy-blue);
+            width: 44px;
+            height: 44px;
+            border: 1px solid var(--navy-blue);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            transition: all 0.3s ease;
         }
-
-        .photo-date {
-            letter-spacing: 0.4em;
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 1.1rem;
-            margin-top: 25px;
-            font-weight: 300;
+        
+        .play-main:hover {
+            background: var(--navy-blue);
+            color: white;
         }
 
         .hero-image-frame {
             width: 100%;
-            max-width: 380px;
-            aspect-ratio: 3/4;
+            max-width: 440px; /* Más larga */
+            height: 600px;
             object-fit: cover;
-            border: 10px solid white;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+            border: 12px solid white;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
         }
 
         .image-divider-frame {
@@ -189,44 +141,27 @@
             background: transparent;
             border: 1px solid var(--gold-subtle);
             color: var(--gold-subtle);
-            padding: 12px 30px;
+            padding: 10px 25px;
             font-size: 10px;
             letter-spacing: 3px;
             text-transform: uppercase;
             transition: all 0.4s ease;
         }
 
-        .btn-gold:hover {
-            background: var(--gold-subtle);
-            color: white;
-        }
-
-        /* Calendario */
         .mini-calendar { 
             display: grid; 
             grid-template-columns: repeat(7, 1fr); 
-            gap: 10px; 
-            max-width: 320px; 
-            margin: 30px auto; 
+            gap: 8px; 
+            max-width: 300px; 
+            margin: 20px auto; 
         }
         .calendar-day { 
-            padding: 8px 4px; 
-            color: white; 
-            font-size: 0.85rem; 
+            padding: 5px; 
+            font-size: 0.8rem; 
             display: flex; 
             align-items: center; 
             justify-content: center; 
             position: relative; 
-        }
-        .calendar-header-day {
-            opacity: 0.5;
-            font-size: 10px;
-            padding-bottom: 5px;
-        }
-        .heart-date {
-            font-weight: bold;
-            color: var(--navy-blue) !important;
-            z-index: 2;
         }
         .heart-date::after { 
             content: "❤"; 
@@ -235,19 +170,20 @@
             left: 50%; 
             transform: translate(-50%, -50%); 
             color: white; 
-            font-size: 2.5rem; 
+            font-size: 2.2rem; 
             z-index: -1; 
         }
 
-        /* Ajustes Cuenta Regresiva Reducida */
-        .countdown-item span {
-            font-size: 2.5rem;
-            line-height: 1;
+        #countdown {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: baseline;
+            gap: 15px;
         }
-        @media (min-width: 768px) {
-            .countdown-item span {
-                font-size: 3.5rem;
-            }
+        .countdown-item span {
+            font-size: 2.2rem;
+            line-height: 1;
         }
     </style>
 </head>
@@ -263,38 +199,32 @@
     <header id="hero-section" class="flex flex-col md:flex-row min-h-screen">
         <div class="flex-1 bg-white flex flex-col justify-center items-center text-center p-8 relative overflow-hidden">
             <div class="reveal active">
-                <p class="font-script text-2xl text-gold-subtle mb-4">Nos encantaría celebrar este día tan especial junto a ti.</p>
+                <p class="font-script text-xl md:text-2xl text-gold-subtle mb-6 opacity-80">Nos encantaría celebrar este día tan especial junto a ti.</p>
                 
-                <h1 class="font-script text-7xl md:text-9xl text-navy-blue mb-4">Oscar</h1>
-                <p class="font-serif-elegant text-2xl my-2 text-gold-subtle italic">&</p>
-                <h1 class="font-script text-7xl md:text-9xl text-navy-blue mb-8">Fany</h1>
+                <h1 class="font-script text-7xl md:text-8xl text-navy-blue mb-4">Oscar</h1>
+                <p class="font-serif-elegant text-xl my-2 text-gold-subtle italic">&</p>
+                <h1 class="font-script text-7xl md:text-8xl text-navy-blue mb-8">Fany</h1>
                 
                 <div class="mb-2">
-                    <p class="font-serif-elegant tracking-[0.3em] text-[12px] text-slate-500 uppercase">Te esperamos para celebrar</p>
-                    <p class="font-script text-4xl text-gold-subtle mt-1">Juntos</p>
+                    <p class="font-serif-elegant tracking-[0.3em] text-[11px] text-slate-500 uppercase">Te esperamos para celebrar</p>
+                    <p class="font-script text-4xl text-gold-subtle mt-2">Juntos</p>
                 </div>
 
-                <!-- Reproductor de Música -->
+                <!-- REPRODUCTOR RESTAURADO -->
                 <div class="player-container mx-auto">
-                    <p class="player-title">Escucha nuestra canción</p>
+                    <p class="player-label font-serif-elegant">Escucha nuestra canción</p>
                     <div class="progress-bar" id="progress-container">
-                        <div class="progress-current" id="music-progress">
-                            <div class="progress-handle"></div>
-                        </div>
+                        <div class="progress-current" id="music-progress"></div>
                     </div>
-                    <div class="player-controls">
-                        <svg class="control-btn w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
+                    <div class="player-controls flex items-center justify-center gap-5">
+                        <svg class="w-4 h-4 cursor-pointer opacity-40 hover:opacity-100" fill="currentColor" viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
                         
-                        <div class="control-btn play-main" onclick="toggleMusic()">
-                            <svg id="play-icon" class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M8 5v14l11-7z"/>
-                            </svg>
-                            <svg id="pause-icon" class="w-8 h-8 hidden" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
-                            </svg>
+                        <div class="control-btn play-main cursor-pointer" onclick="toggleMusic()">
+                            <svg id="play-icon" class="w-5 h-5 ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                            <svg id="pause-icon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
                         </div>
-                        
-                        <svg class="control-btn w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
+
+                        <svg class="w-4 h-4 cursor-pointer opacity-40 hover:opacity-100" fill="currentColor" viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
                     </div>
                 </div>
             </div>
@@ -303,9 +233,10 @@
         <div class="flex-1 bg-navy-premium flex flex-col justify-center items-center p-10 relative overflow-hidden">
             <div class="flex flex-col items-center">
                 <img src="https://raw.githubusercontent.com/regina15033/Nuestra-Boda-Oscar-Y-Fany-/main/WhatsApp%20Image%202026-05-01%20at%205.21.34%20PM%20(1).jpeg" 
-                     alt="Oscar y Fany" class="hero-image-frame photo-reveal active">
-                <div class="photo-date font-serif-elegant date-reveal active">
-                    04 | 07 | 26
+                     alt="Oscar y Fany" class="hero-image-frame photo-static active">
+                <div class="mt-8 text-center reveal active">
+                    <p class="font-serif-elegant tracking-[0.4em] text-white/80 text-sm">04 | 07 | 26</p>
+                    <p class="font-script text-xl text-gold-bright mt-4 italic">Unidos por el amor</p>
                 </div>
             </div>
         </div>
@@ -314,141 +245,141 @@
     <!-- CALENDARIO -->
     <section id="calendar-section" class="py-24 px-6 bg-navy-premium text-white text-center relative">
         <div class="max-w-4xl mx-auto reveal">
-            <h3 class="font-serif-elegant text-sm tracking-[0.5em] opacity-60 mb-12 uppercase">Nuestra Fecha</h3>
+            <h3 class="font-serif-elegant text-xs tracking-[0.5em] opacity-60 mb-10 uppercase">Nuestra Fecha</h3>
             
-            <div class="flex flex-col md:flex-row justify-center items-center gap-16 mb-16">
-                <div class="text-center md:text-right border-r-0 md:border-r border-white/10 pr-0 md:pr-16">
-                    <p class="font-serif-elegant text-6xl text-gold-bright mb-2">Sábado</p>
-                    <p class="font-serif-elegant text-2xl tracking-[0.3em] uppercase">Julio 2026</p>
+            <div class="flex flex-col md:flex-row justify-center items-center gap-12 mb-12">
+                <div class="text-center md:text-right border-r-0 md:border-r border-white/10 pr-0 md:pr-12">
+                    <p class="font-serif-elegant text-5xl text-gold-bright mb-2">Sábado</p>
+                    <p class="font-serif-elegant text-xl tracking-[0.3em] uppercase">Julio 2026</p>
                 </div>
 
                 <div class="mini-calendar font-serif-elegant">
-                    <div class="calendar-header-day">D</div><div class="calendar-header-day">L</div><div class="calendar-header-day">M</div><div class="calendar-header-day">M</div><div class="calendar-header-day">J</div><div class="calendar-header-day">V</div><div class="calendar-header-day">S</div>
+                    <div class="calendar-header-day opacity-40 text-[9px]">D</div><div class="calendar-header-day opacity-40 text-[9px]">L</div><div class="calendar-header-day opacity-40 text-[9px]">M</div><div class="calendar-header-day opacity-40 text-[9px]">M</div><div class="calendar-header-day opacity-40 text-[9px]">J</div><div class="calendar-header-day opacity-40 text-[9px]">V</div><div class="calendar-header-day opacity-40 text-[9px]">S</div>
                     <div class="calendar-day opacity-0"></div><div class="calendar-day opacity-0"></div><div class="calendar-day opacity-0"></div>
                     <div class="calendar-day">1</div><div class="calendar-day">2</div><div class="calendar-day">3</div><div class="calendar-day heart-date">4</div>
                     <div class="calendar-day">5</div><div class="calendar-day">6</div><div class="calendar-day">7</div><div class="calendar-day">8</div><div class="calendar-day">9</div><div class="calendar-day">10</div><div class="calendar-day">11</div>
-                    <div class="calendar-day">12</div><div class="calendar-day">13</div><div class="calendar-day">14</div><div class="calendar-day">15</div><div class="calendar-day">16</div><div class="calendar-day">17</div><div class="calendar-day">18</div>
-                    <div class="calendar-day">19</div><div class="calendar-day">20</div><div class="calendar-day">21</div><div class="calendar-day">22</div><div class="calendar-day">23</div><div class="calendar-day">24</div><div class="calendar-day">25</div>
-                    <div class="calendar-day">26</div><div class="calendar-day">27</div><div class="calendar-day">28</div><div class="calendar-day">29</div><div class="calendar-day">30</div><div class="calendar-day">31</div><div class="calendar-day opacity-0"></div>
                 </div>
             </div>
 
-            <button onclick="window.open('https://calendar.google.com/calendar/render?action=TEMPLATE&text=Boda+Oscar+%26+Fany&dates=20260704T140000Z/20260705T040000Z&details=Acomp%C3%B1anos+a+celebrar+nuestra+boda.+Ceremonia+2:00+PM,+Recepci%C3%B3n+3:00+PM.&location=San+Juan+del+Rio,+Qro.')" 
-                    class="btn-gold border-white/40 text-white hover:bg-white hover:text-navy-blue">
-                Agendar en mi Calendario
-            </button>
+            <button onclick="window.open('https://calendar.google.com')" class="btn-gold border-white/40 text-white hover:bg-white hover:text-navy-blue">Agendar Fecha</button>
         </div>
     </section>
 
-    <!-- FOTO DESPUÉS DEL CALENDARIO -->
-    <section class="py-16 px-6 bg-soft-white text-center">
-        <div class="max-w-5xl mx-auto reveal">
+    <!-- FOTO 1 - SIN FRASE -->
+    <section class="py-20 px-6 bg-soft-white text-center">
+        <div class="max-w-5xl mx-auto">
             <img src="https://raw.githubusercontent.com/regina15033/Nuestra-Boda-Oscar-Y-Fany-/main/WhatsApp%20Image%202026-05-01%20at%205.21.33%20PM.jpeg" 
-                 alt="Momento especial" class="image-divider-frame">
+                 alt="Foto 1" class="image-divider-frame photo-static reveal">
         </div>
     </section>
 
-    <!-- CUENTA REGRESIVA REDUCIDA -->
-    <section class="py-24 px-6 bg-white text-center">
+    <!-- FRASE PRINCIPAL -->
+    <section class="py-16 px-8 bg-white text-center">
+        <div class="max-w-3xl mx-auto reveal">
+            <p class="font-serif-elegant text-lg md:text-xl text-navy-blue leading-relaxed">
+                Dos caminos se cruzaron, dos historias se unieron y dos corazones decidieron caminar juntos para siempre.
+            </p>
+            <p class="font-script text-3xl text-gold-subtle mt-8">
+                Con mucha alegría te invitamos a celebrar el inicio de nuestra vida como esposos.
+            </p>
+        </div>
+    </section>
+
+    <!-- CUENTA REGRESIVA -->
+    <section class="py-24 px-6 bg-white text-center border-y border-slate-50">
         <div class="max-w-4xl mx-auto reveal">
-            <h3 class="font-serif-elegant text-[10px] tracking-[0.4em] text-gold-subtle mb-10 uppercase">Faltan</h3>
-            <div id="countdown" class="flex flex-wrap justify-center gap-4 md:gap-8">
-                <div class="countdown-item">
-                    <span id="days" class="font-serif-elegant text-navy-blue">00</span>
+            <h3 class="font-serif-elegant text-[10px] tracking-[0.4em] text-gold-subtle mb-12 uppercase">Comienza la cuenta atrás</h3>
+            <div id="countdown" class="font-serif-elegant text-navy-blue">
+                <div class="countdown-item flex flex-col items-center">
+                    <span id="days">00</span>
                     <p class="text-[8px] uppercase tracking-widest mt-2 text-slate-400">Días</p>
                 </div>
-                <div class="text-2xl text-gold-subtle mt-1 opacity-20">:</div>
-                <div class="countdown-item">
-                    <span id="hours" class="font-serif-elegant text-navy-blue">00</span>
+                <div class="text-xl text-gold-subtle pt-1 opacity-30">:</div>
+                <div class="countdown-item flex flex-col items-center">
+                    <span id="hours">00</span>
                     <p class="text-[8px] uppercase tracking-widest mt-2 text-slate-400">Hrs</p>
                 </div>
-                <div class="text-2xl text-gold-subtle mt-1 opacity-20">:</div>
-                <div class="countdown-item">
-                    <span id="minutes" class="font-serif-elegant text-navy-blue">00</span>
+                <div class="text-xl text-gold-subtle pt-1 opacity-30">:</div>
+                <div class="countdown-item flex flex-col items-center">
+                    <span id="minutes">00</span>
                     <p class="text-[8px] uppercase tracking-widest mt-2 text-slate-400">Min</p>
                 </div>
-                <div class="text-2xl text-gold-subtle mt-1 opacity-20">:</div>
-                <div class="countdown-item">
-                    <span id="seconds" class="font-serif-elegant text-navy-blue">00</span>
+                <div class="text-xl text-gold-subtle pt-1 opacity-30">:</div>
+                <div class="countdown-item flex flex-col items-center">
+                    <span id="seconds">00</span>
                     <p class="text-[8px] uppercase tracking-widest mt-2 text-slate-400">Seg</p>
                 </div>
             </div>
-            <p class="font-serif-elegant text-sm text-slate-500 mt-14 tracking-[0.2em] italic">Para el gran día</p>
         </div>
     </section>
 
-    <!-- FOTO DESPUÉS DE LA CUENTA REGRESIVA -->
+    <!-- FOTO 2 + FRASE -->
     <section class="py-16 px-6 bg-soft-white text-center">
-        <div class="max-w-5xl mx-auto reveal">
+        <div class="max-w-5xl mx-auto">
             <img src="https://raw.githubusercontent.com/regina15033/Nuestra-Boda-Oscar-Y-Fany-/main/WhatsApp%20Image%202026-05-01%20at%205.22.05%20PM.jpeg" 
-                 alt="Celebración" class="image-divider-frame">
+                 alt="Foto 2" class="image-divider-frame photo-static reveal">
+            <p class="font-script text-3xl text-navy-blue mt-8 reveal italic">Te amaré cien años más...</p>
         </div>
     </section>
 
     <!-- UBICACIONES -->
-    <section class="py-32 px-6 bg-white border-t border-slate-50">
-        <div class="max-w-5xl mx-auto reveal">
+    <section class="py-32 px-6 bg-white">
+        <div class="max-w-5xl mx-auto">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
-                <div class="flex flex-col items-center text-center">
-                    <h3 class="font-script text-5xl mb-4 text-navy-blue">Ceremonia Religiosa</h3>
+                <div class="flex flex-col items-center text-center reveal">
+                    <h3 class="font-script text-5xl mb-4 text-navy-blue">Misa</h3>
                     <p class="font-serif-elegant text-xs text-gold-subtle mb-4 tracking-widest uppercase">14:00 Horas</p>
-                    <p class="font-serif-elegant text-sm text-slate-500 mb-8 italic">Parroquia de Nuestra Señora de Guadalupe</p>
-                    <button onclick="window.open('https://www.google.com/maps/place/Parroquia+de+Nuestra+Se%C3%B1ora+de+Guadalupe/@20.4218824,-100.0689248,17z')" class="btn-gold">Ver Mapa</button>
+                    <p class="font-serif-elegant text-sm text-slate-500 mb-8 px-4">Parroquia de Nuestra Señora de Guadalupe</p>
+                    <button onclick="window.open('https://maps.app.goo.gl/3')" class="btn-gold">Mapa</button>
                 </div>
-                <div class="flex flex-col items-center text-center">
+                <div class="flex flex-col items-center text-center reveal">
                     <h3 class="font-script text-5xl mb-4 text-navy-blue">Recepción</h3>
                     <p class="font-serif-elegant text-xs text-gold-subtle mb-4 tracking-widest uppercase">15:00 Horas</p>
-                    <p class="font-serif-elegant text-sm text-slate-500 mb-8 italic">Salón De Eventos "Los Arcos"</p>
-                    <button onclick="window.open('https://www.google.com/maps/place/Salon+De+Eventos+%22Los+Arcos%22,+76824+La+Estancia,+Qro./data=!4m2!3m1!1s0x85d372b45826a623:0x5efd0a2245c3cfe7')" class="btn-gold">Ver Mapa</button>
+                    <p class="font-serif-elegant text-sm text-slate-500 mb-8 px-4">Salón De Eventos "Los Arcos"</p>
+                    <button onclick="window.open('https://maps.app.goo.gl/4')" class="btn-gold">Mapa</button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- FOTO DESPUÉS DE LA RECEPCIÓN -->
+    <!-- FOTO 3 + FRASE -->
     <section class="py-16 px-6 bg-soft-white text-center">
-        <div class="max-w-5xl mx-auto reveal">
+        <div class="max-w-5xl mx-auto">
             <img src="https://raw.githubusercontent.com/regina15033/Nuestra-Boda-Oscar-Y-Fany-/main/WhatsApp%20Image%202026-05-01%20at%205.21.34%20PM%20(1).jpeg" 
-                 alt="Final" class="image-divider-frame">
+                 alt="Foto 3" class="image-divider-frame photo-static reveal">
+            <p class="font-script text-3xl text-navy-blue mt-8 reveal italic">Juntos por siempre.</p>
         </div>
     </section>
 
+    <!-- CIERRE -->
     <footer class="py-40 bg-navy-premium text-white text-center">
         <div class="reveal">
-            <p class="font-script text-5xl text-gold-bright mb-12">¡Te esperamos!</p>
-            <h2 class="font-script text-8xl mb-4">Oscar & Fany</h2>
-            <p class="font-serif-elegant text-[11px] tracking-[0.5em] opacity-40 uppercase">04.07.26</p>
+            <p class="font-script text-5xl text-gold-bright mb-16">¡Te esperamos!</p>
+            <h2 class="font-script text-7xl md:text-7xl mb-4">Oscar & Fany</h2>
+            <p class="font-serif-elegant text-[10px] tracking-[0.5em] opacity-40 uppercase mt-12">04 . 07 . 26</p>
         </div>
     </footer>
 
     <script>
         function createPetal() {
-            if (window.scrollY < 200 && window.innerWidth < 768) return;
-
+            if (window.scrollY < 100) return;
             const container = document.getElementById('petals-container');
             const petal = document.createElement('div');
             petal.className = 'petal';
-            
-            const size = Math.random() * 8 + 4;
-            const left = Math.random() * 100;
-            const duration = Math.random() * 8 + 12;
-            const delay = Math.random() * 5;
-
+            const size = Math.random() * 6 + 4;
             petal.style.width = `${size}px`;
             petal.style.height = `${size}px`;
-            petal.style.left = `${left}vw`;
-            petal.style.animation = `fall ${duration}s linear ${delay}s infinite`;
-            
+            petal.style.left = `${Math.random() * 100}vw`;
+            petal.style.animation = `fall ${Math.random() * 10 + 8}s linear forwards`;
             container.appendChild(petal);
-            setTimeout(() => petal.remove(), (duration + delay) * 1000);
+            setTimeout(() => petal.remove(), 12000);
         }
-        setInterval(createPetal, 800);
+        setInterval(createPetal, 1200);
 
         const audio = document.getElementById('bg-music');
         const playIcon = document.getElementById('play-icon');
         const pauseIcon = document.getElementById('pause-icon');
         const progressBar = document.getElementById('music-progress');
-        const progressContainer = document.getElementById('progress-container');
         let isPlaying = false;
 
         function toggleMusic() {
@@ -457,7 +388,7 @@
                 playIcon.classList.remove('hidden');
                 pauseIcon.classList.add('hidden');
             } else {
-                audio.play().catch(e => console.log("Audio play error:", e));
+                audio.play().catch(e => console.log("Audio play blocked"));
                 playIcon.classList.add('hidden');
                 pauseIcon.classList.remove('hidden');
             }
@@ -465,45 +396,30 @@
         }
 
         audio.ontimeupdate = () => {
-            if (audio.duration) {
-                const progress = (audio.currentTime / audio.duration) * 100;
-                progressBar.style.width = progress + "%";
-            }
+            const progress = (audio.currentTime / audio.duration) * 100;
+            progressBar.style.width = progress + "%";
         };
 
-        progressContainer.onclick = (e) => {
-            const width = progressContainer.clientWidth;
-            const clickX = e.offsetX;
-            const duration = audio.duration;
-            audio.currentTime = (clickX / width) * duration;
-        };
-
-        function revealOnScroll() {
-            document.querySelectorAll('.reveal, .photo-reveal, .date-reveal').forEach(el => {
-                if (el.getBoundingClientRect().top < window.innerHeight - 50) el.classList.add('active');
+        function reveal() {
+            const reveals = document.querySelectorAll('.reveal, .photo-static');
+            reveals.forEach(r => {
+                const revealTop = r.getBoundingClientRect().top;
+                if (revealTop < window.innerHeight - 100) r.classList.add('active');
             });
         }
-        window.addEventListener('scroll', revealOnScroll);
+        window.addEventListener('scroll', reveal);
 
-        const targetDate = new Date("Jul 4, 2026 14:00:00").getTime();
+        const target = new Date("Jul 4, 2026 14:00:00").getTime();
         setInterval(() => {
-            const gap = targetDate - new Date().getTime();
+            const gap = target - new Date().getTime();
             if (gap < 0) return;
-            
-            const d = Math.floor(gap / (1000 * 60 * 60 * 24));
-            const h = Math.floor((gap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const m = Math.floor((gap % (1000 * 60 * 60)) / (1000 * 60));
-            const s = Math.floor((gap % (1000 * 60)) / 1000);
-
-            document.getElementById('days').innerText = d.toString().padStart(2, '0');
-            document.getElementById('hours').innerText = h.toString().padStart(2, '0');
-            document.getElementById('minutes').innerText = m.toString().padStart(2, '0');
-            document.getElementById('seconds').innerText = s.toString().padStart(2, '0');
+            document.getElementById('days').innerText = Math.floor(gap / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
+            document.getElementById('hours').innerText = Math.floor((gap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
+            document.getElementById('minutes').innerText = Math.floor((gap % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
+            document.getElementById('seconds').innerText = Math.floor((gap % (1000 * 60)) / 1000).toString().padStart(2, '0');
         }, 1000);
 
-        window.onload = () => {
-            revealOnScroll();
-        };
+        window.onload = reveal;
     </script>
 </body>
 </html>

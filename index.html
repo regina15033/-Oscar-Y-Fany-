@@ -86,7 +86,7 @@
             width: 100%;
             max-width: 320px;
             padding: 20px 0;
-            background: transparent; /* Sin fondo como se solicitó */
+            background: transparent;
         }
         
         .player-label {
@@ -155,14 +155,31 @@
             box-shadow: 0 30px 60px rgba(0,0,0,0.3);
         }
 
+        /* Ajuste: Foto 1 reducida un 20% en altura (de 450px a 360px) */
         .image-short-frame {
             width: 100%;
             max-width: 600px;
-            height: 450px;
+            height: 360px;
             object-fit: cover;
             border: 12px solid white;
             box-shadow: 0 15px 35px rgba(0,0,0,0.1);
             margin: 0 auto;
+        }
+
+        /* Botón Ajustado a Azul Navy */
+        .btn-navy {
+            background: transparent;
+            border: 1px solid var(--navy-blue);
+            color: var(--navy-blue);
+            padding: 12px 30px;
+            font-size: 10px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            transition: all 0.4s ease;
+        }
+        .btn-navy:hover {
+            background-color: var(--navy-blue);
+            color: white;
         }
 
         .btn-gold {
@@ -218,12 +235,22 @@
             font-weight: bold;
         }
 
+        /* Ajuste: Cuenta regresiva un 20% más grande */
         #countdown {
             display: flex;
             flex-direction: row;
             justify-content: center;
             align-items: baseline;
-            gap: 15px;
+            gap: 18px; /* Gap aumentado ligeramente */
+        }
+        
+        #countdown .countdown-item span {
+            font-size: 2.4rem; /* Antes era por defecto (aprox 2rem), aumentado 20% */
+            line-height: 1;
+        }
+        
+        #countdown p {
+            font-size: 9px; /* Aumentado proporcionalmente */
         }
     </style>
 </head>
@@ -246,7 +273,6 @@
             </div>
 
             <div class="reveal delay-2">
-                <!-- Frase restaurada -->
                 <p class="font-script text-xl md:text-2xl text-gold-subtle mb-10 opacity-80 px-4 max-w-md">
                     Nos encantaría celebrar este día tan especial junto a ti.
                 </p>
@@ -267,20 +293,15 @@
                     </div>
 
                     <div class="player-controls">
-                        <!-- Pista Anterior -->
                         <svg class="w-5 h-5 cursor-pointer opacity-70 hover:opacity-100" fill="currentColor" viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
-                        <!-- Retroceder -->
                         <svg class="w-5 h-5 cursor-pointer opacity-70 hover:opacity-100" fill="currentColor" viewBox="0 0 24 24"><path d="M11 18V6l-8.5 6 8.5 6zm.5-6l8.5 6V6l-8.5 6z"/></svg>
                         
-                        <!-- Play/Pause -->
                         <div class="play-main-circle" onclick="toggleMusic()">
                             <svg id="play-icon" class="w-7 h-7 ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                             <svg id="pause-icon" class="w-7 h-7 hidden" fill="currentColor" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
                         </div>
 
-                        <!-- Avanzar -->
                         <svg class="w-5 h-5 cursor-pointer opacity-70 hover:opacity-100" fill="currentColor" viewBox="0 0 24 24"><path d="M4 18l8.5-6L4 6v12zm9-12v12l8.5-6L13 6z"/></svg>
-                        <!-- Siguiente Pista -->
                         <svg class="w-5 h-5 cursor-pointer opacity-70 hover:opacity-100" fill="currentColor" viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
                     </div>
                 </div>
@@ -332,7 +353,7 @@
         </div>
     </section>
 
-    <!-- FOTO 1 -->
+    <!-- FOTO 1: Reducida un 20% en altura -->
     <section class="py-20 px-6 bg-soft-white text-center">
         <div class="max-w-5xl mx-auto">
             <img src="https://raw.githubusercontent.com/regina15033/Nuestra-Boda-Oscar-Y-Fany-/main/WhatsApp%20Image%202026-05-01%20at%205.21.33%20PM.jpeg" 
@@ -352,29 +373,29 @@
         </div>
     </section>
 
-    <!-- CUENTA REGRESIVA -->
+    <!-- CUENTA REGRESIVA: Aumentada un 20% -->
     <section class="py-24 px-6 bg-white text-center border-y border-slate-50">
         <div class="max-w-4xl mx-auto reveal">
             <h3 class="font-serif-elegant text-[10px] tracking-[0.4em] text-gold-subtle mb-12 uppercase">Comienza la cuenta atrás</h3>
             <div id="countdown" class="font-serif-elegant text-navy-blue">
                 <div class="countdown-item flex flex-col items-center">
                     <span id="days">00</span>
-                    <p class="text-[8px] uppercase tracking-widest mt-2 text-slate-400">Días</p>
+                    <p class="uppercase tracking-widest mt-2 text-slate-400">Días</p>
                 </div>
-                <div class="text-xl text-gold-subtle pt-1 opacity-30">:</div>
+                <div class="text-2xl text-gold-subtle pt-1 opacity-30">:</div>
                 <div class="countdown-item flex flex-col items-center">
                     <span id="hours">00</span>
-                    <p class="text-[8px] uppercase tracking-widest mt-2 text-slate-400">Hrs</p>
+                    <p class="uppercase tracking-widest mt-2 text-slate-400">Hrs</p>
                 </div>
-                <div class="text-xl text-gold-subtle pt-1 opacity-30">:</div>
+                <div class="text-2xl text-gold-subtle pt-1 opacity-30">:</div>
                 <div class="countdown-item flex flex-col items-center">
                     <span id="minutes">00</span>
-                    <p class="text-[8px] uppercase tracking-widest mt-2 text-slate-400">Min</p>
+                    <p class="uppercase tracking-widest mt-2 text-slate-400">Min</p>
                 </div>
-                <div class="text-xl text-gold-subtle pt-1 opacity-30">:</div>
+                <div class="text-2xl text-gold-subtle pt-1 opacity-30">:</div>
                 <div class="countdown-item flex flex-col items-center">
                     <span id="seconds">00</span>
-                    <p class="text-[8px] uppercase tracking-widest mt-2 text-slate-400">Seg</p>
+                    <p class="uppercase tracking-widest mt-2 text-slate-400">Seg</p>
                 </div>
             </div>
         </div>
@@ -388,19 +409,19 @@
                     <h3 class="font-script text-5xl mb-4 text-navy-blue">Misa</h3>
                     <p class="font-serif-elegant text-xs text-gold-subtle mb-4 tracking-widest uppercase">14:00 Horas</p>
                     <p class="font-serif-elegant text-sm text-slate-500 mb-8 px-4">Parroquia de Nuestra Señora de Guadalupe</p>
-                    <button onclick="window.open('https://maps.app.goo.gl/3')" class="btn-gold">Mapa</button>
+                    <button onclick="window.open('https://maps.app.goo.gl/3')" class="btn-navy">Ver Ubicación</button>
                 </div>
                 <div class="flex flex-col items-center text-center reveal">
                     <h3 class="font-script text-5xl mb-4 text-navy-blue">Recepción</h3>
                     <p class="font-serif-elegant text-xs text-gold-subtle mb-4 tracking-widest uppercase">15:00 Horas</p>
                     <p class="font-serif-elegant text-sm text-slate-500 mb-8 px-4">Salón De Eventos "Los Arcos"</p>
-                    <button onclick="window.open('https://maps.app.goo.gl/4')" class="btn-gold">Mapa</button>
+                    <button onclick="window.open('https://maps.app.goo.gl/4')" class="btn-navy">Ver Ubicación</button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SECCIÓN FOTO ADICIONAL DESPUÉS DE RECEPCIÓN -->
+    <!-- SECCIÓN FOTO ADICIONAL -->
     <section class="py-20 px-6 bg-soft-white text-center">
         <div class="max-w-5xl mx-auto">
             <img src="https://raw.githubusercontent.com/regina15033/Nuestra-Boda-Oscar-Y-Fany-/main/WhatsApp%20Image%202026-05-01%20at%205.22.05%20PM.jpeg" 
